@@ -1,0 +1,15 @@
+// CONFIGURACION GENERAL
+project --topLevelPackage ar.com.ix.proyectos
+// CONFIGURACION DE LA BASE DE DATOS
+jpa setup --database HYPERSONIC_PERSISTENT --provider HIBERNATE
+// ENTIDADES, O SEA LOS DATOS QUE SE GUARDAN DE CADA COSA
+// proyectos
+entity jpa --class ~.model.Proyecto
+field string --fieldName titulo
+field string --fieldName autor
+field string --fieldName descripcion
+field date --fieldName fecha --type java.util.Date --dateFormat MEDIUM --timeFormat NONE --persistenceType JPA_DATE
+field string --fieldName linkALaCapacitacion
+// CONFIGURACION DE LA WEB
+web jsf setup --library PRIMEFACES --implementation ORACLE_MOJARRA --theme BLACK_TIE
+web jsf all --package ~.web

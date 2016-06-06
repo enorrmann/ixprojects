@@ -1,0 +1,14 @@
+// Spring Roo 1.3.2.RELEASE [rev 8387857] log opened at 2016-06-06 19:54:00
+project --topLevelPackage ar.com.ix.proyectos
+jpa setup --database HYPERSONIC_PERSISTENT --provider HIBERNATE
+entity jpa --class ~.model.Proyecto
+field string --fieldName titulo
+field string --fieldName autor
+field string --fieldName descripcion
+field date --fieldName fecha --type java.util.Date --dateFormat MEDIUM --timeFormat NONE --persistenceType JPA_DATE
+field string --fieldName linkALaCapacitacion
+web jsf setup --library PRIMEFACES --implementation ORACLE_MOJARRA --theme BLACK_TIE
+web jsf all --package ~.web
+// script /home/emilio/git/ixprojects/init/backup.roo
+quit
+// Spring Roo 1.3.2.RELEASE [rev 8387857] log closed at 2016-06-06 19:54:10

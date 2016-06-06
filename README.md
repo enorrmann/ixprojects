@@ -1,2 +1,0 @@
-# ixprojects
-readme
