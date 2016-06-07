@@ -14,10 +14,10 @@
     <h:form prependId="false" id="dataForm">
       <p:panel id="data" toggleable="true" toggleSpeed="250">
         <f:facet name="header">
-          <h:outputText value="#{proyectoBean.name}" />
+          <h:outputText value="Proyectos" />
         </f:facet>
         <h:outputFormat id="noRecordsFound" value="#{messages.label_no_records_found}" rendered="#{!proyectoBean.dataVisible}">
-          <f:param value="Proyectoes" />
+          <f:param value="Proyectos" />
         </h:outputFormat>
         <p:dataTable id="list" value="#{proyectoBean.allProyectoes}" var="proyecto" rendered="#{proyectoBean.dataVisible}" resizableColumns="false" paginator="true" paginatorTemplate=" {CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,25,50" rows="10">
           <p:columns value="#{proyectoBean.columns}" var="column" columnIndexVar="colIndex">
