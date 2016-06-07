@@ -14,23 +14,61 @@ public class Proyecto {
 
     /**
      */
-    private String titulo;
+    private String responsable;
 
     /**
      */
-    private String autor;
-
-    /**
-     */
-    private String descripcion;
+    private String codigo;
 
     /**
      */
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(style = "M-")
-    private Date fecha;
+    private Date fechaDeInicioEstimada;
 
     /**
      */
-    private String linkALaCapacitacion;
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(style = "M-")
+    private Date fechaDeInicio;
+
+    /**
+     */
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(style = "M-")
+    private Date fechaDeFinalizacionEstimada;
+
+    /**
+     */
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(style = "M-")
+    private Date fechaDeFinalizacion;
+
+    /**
+     */
+    private String ingenieria;
+
+    /**
+     */
+    private String cronograma;
+
+    /**
+     */
+    private String informacionRecibida;
+
+    /**
+     */
+    private String auditoriaVirtual;
+
+    /**
+     */
+    private String correccionesDeAuditoria;
+
+    /**
+     */
+    private String auditoriaCorregida;
+
+    /**
+     */
+    private String comentariosYObservaciones;
 }

@@ -14,7 +14,7 @@ privileged aspect Proyecto_Roo_Jpa_ActiveRecord {
     @PersistenceContext
     transient EntityManager Proyecto.entityManager;
     
-    public static final List<String> Proyecto.fieldNames4OrderClauseFilter = java.util.Arrays.asList("titulo", "autor", "descripcion", "fecha", "linkALaCapacitacion");
+    public static final List<String> Proyecto.fieldNames4OrderClauseFilter = java.util.Arrays.asList("responsable", "codigo", "fechaDeInicioEstimada", "fechaDeInicio", "fechaDeFinalizacionEstimada", "fechaDeFinalizacion", "ingenieria", "cronograma", "informacionRecibida", "auditoriaVirtual", "correccionesDeAuditoria", "auditoriaCorregida", "comentariosYObservaciones");
     
     public static final EntityManager Proyecto.entityManager() {
         EntityManager em = new Proyecto().entityManager;

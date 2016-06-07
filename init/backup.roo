@@ -5,11 +5,19 @@ jpa setup --database HYPERSONIC_PERSISTENT --provider HIBERNATE
 // ENTIDADES, O SEA LOS DATOS QUE SE GUARDAN DE CADA COSA
 // proyectos
 entity jpa --class ~.model.Proyecto
-field string --fieldName titulo
-field string --fieldName autor
-field string --fieldName descripcion
-field date --fieldName fecha --type java.util.Date --dateFormat MEDIUM --timeFormat NONE --persistenceType JPA_DATE
-field string --fieldName linkALaCapacitacion
+field string --fieldName responsable
+field string --fieldName codigo
+field date --fieldName fechaDeInicioEstimada --type java.util.Date --dateFormat MEDIUM --timeFormat NONE --persistenceType JPA_DATE
+field date --fieldName fechaDeInicio --type java.util.Date --dateFormat MEDIUM --timeFormat NONE --persistenceType JPA_DATE
+field date --fieldName fechaDeFinalizacionEstimada --type java.util.Date --dateFormat MEDIUM --timeFormat NONE --persistenceType JPA_DATE
+field date --fieldName fechaDeFinalizacion --type java.util.Date --dateFormat MEDIUM --timeFormat NONE --persistenceType JPA_DATE
+field string --fieldName ingenieria
+field string --fieldName cronograma
+field string --fieldName informacionRecibida
+field string --fieldName auditoriaVirtual
+field string --fieldName correccionesDeAuditoria
+field string --fieldName auditoriaCorregida
+field string --fieldName comentariosYObservaciones
 // CONFIGURACION DE LA WEB
 web jsf setup --library PRIMEFACES --implementation ORACLE_MOJARRA --theme BLACK_TIE
 web jsf all --package ~.web

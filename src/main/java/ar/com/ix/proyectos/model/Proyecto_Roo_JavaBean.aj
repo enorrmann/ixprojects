@@ -8,44 +8,108 @@ import java.util.Date;
 
 privileged aspect Proyecto_Roo_JavaBean {
     
-    public String Proyecto.getTitulo() {
-        return this.titulo;
+    public String Proyecto.getResponsable() {
+        return this.responsable;
     }
     
-    public void Proyecto.setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void Proyecto.setResponsable(String responsable) {
+        this.responsable = responsable;
     }
     
-    public String Proyecto.getAutor() {
-        return this.autor;
+    public String Proyecto.getCodigo() {
+        return this.codigo;
     }
     
-    public void Proyecto.setAutor(String autor) {
-        this.autor = autor;
+    public void Proyecto.setCodigo(String codigo) {
+        this.codigo = codigo;
     }
     
-    public String Proyecto.getDescripcion() {
-        return this.descripcion;
+    public Date Proyecto.getFechaDeInicioEstimada() {
+        return this.fechaDeInicioEstimada;
     }
     
-    public void Proyecto.setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void Proyecto.setFechaDeInicioEstimada(Date fechaDeInicioEstimada) {
+        this.fechaDeInicioEstimada = fechaDeInicioEstimada;
     }
     
-    public Date Proyecto.getFecha() {
-        return this.fecha;
+    public Date Proyecto.getFechaDeInicio() {
+        return this.fechaDeInicio;
     }
     
-    public void Proyecto.setFecha(Date fecha) {
-        this.fecha = fecha;
+    public void Proyecto.setFechaDeInicio(Date fechaDeInicio) {
+        this.fechaDeInicio = fechaDeInicio;
     }
     
-    public String Proyecto.getLinkALaCapacitacion() {
-        return this.linkALaCapacitacion;
+    public Date Proyecto.getFechaDeFinalizacionEstimada() {
+        return this.fechaDeFinalizacionEstimada;
     }
     
-    public void Proyecto.setLinkALaCapacitacion(String linkALaCapacitacion) {
-        this.linkALaCapacitacion = linkALaCapacitacion;
+    public void Proyecto.setFechaDeFinalizacionEstimada(Date fechaDeFinalizacionEstimada) {
+        this.fechaDeFinalizacionEstimada = fechaDeFinalizacionEstimada;
+    }
+    
+    public Date Proyecto.getFechaDeFinalizacion() {
+        return this.fechaDeFinalizacion;
+    }
+    
+    public void Proyecto.setFechaDeFinalizacion(Date fechaDeFinalizacion) {
+        this.fechaDeFinalizacion = fechaDeFinalizacion;
+    }
+    
+    public String Proyecto.getIngenieria() {
+        return this.ingenieria;
+    }
+    
+    public void Proyecto.setIngenieria(String ingenieria) {
+        this.ingenieria = ingenieria;
+    }
+    
+    public String Proyecto.getCronograma() {
+        return this.cronograma;
+    }
+    
+    public void Proyecto.setCronograma(String cronograma) {
+        this.cronograma = cronograma;
+    }
+    
+    public String Proyecto.getInformacionRecibida() {
+        return this.informacionRecibida;
+    }
+    
+    public void Proyecto.setInformacionRecibida(String informacionRecibida) {
+        this.informacionRecibida = informacionRecibida;
+    }
+    
+    public String Proyecto.getAuditoriaVirtual() {
+        return this.auditoriaVirtual;
+    }
+    
+    public void Proyecto.setAuditoriaVirtual(String auditoriaVirtual) {
+        this.auditoriaVirtual = auditoriaVirtual;
+    }
+    
+    public String Proyecto.getCorreccionesDeAuditoria() {
+        return this.correccionesDeAuditoria;
+    }
+    
+    public void Proyecto.setCorreccionesDeAuditoria(String correccionesDeAuditoria) {
+        this.correccionesDeAuditoria = correccionesDeAuditoria;
+    }
+    
+    public String Proyecto.getAuditoriaCorregida() {
+        return this.auditoriaCorregida;
+    }
+    
+    public void Proyecto.setAuditoriaCorregida(String auditoriaCorregida) {
+        this.auditoriaCorregida = auditoriaCorregida;
+    }
+    
+    public String Proyecto.getComentariosYObservaciones() {
+        return this.comentariosYObservaciones;
+    }
+    
+    public void Proyecto.setComentariosYObservaciones(String comentariosYObservaciones) {
+        this.comentariosYObservaciones = comentariosYObservaciones;
     }
     
 }

@@ -53,11 +53,11 @@ privileged aspect ProyectoBean_Roo_ManagedBean {
     @PostConstruct
     public void ProyectoBean.init() {
         columns = new ArrayList<String>();
-        columns.add("titulo");
-        columns.add("autor");
-        columns.add("descripcion");
-        columns.add("fecha");
-        columns.add("linkALaCapacitacion");
+        columns.add("responsable");
+        columns.add("codigo");
+        columns.add("fechaDeInicioEstimada");
+        columns.add("fechaDeInicio");
+        columns.add("fechaDeFinalizacionEstimada");
     }
     
     public String ProyectoBean.getName() {
@@ -128,98 +128,251 @@ privileged aspect ProyectoBean_Roo_ManagedBean {
         
         HtmlPanelGrid htmlPanelGrid = (HtmlPanelGrid) application.createComponent(HtmlPanelGrid.COMPONENT_TYPE);
         
-        OutputLabel tituloCreateOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
-        tituloCreateOutput.setFor("tituloCreateInput");
-        tituloCreateOutput.setId("tituloCreateOutput");
-        tituloCreateOutput.setValue("Titulo:");
-        htmlPanelGrid.getChildren().add(tituloCreateOutput);
+        OutputLabel responsableCreateOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
+        responsableCreateOutput.setFor("responsableCreateInput");
+        responsableCreateOutput.setId("responsableCreateOutput");
+        responsableCreateOutput.setValue("Responsable:");
+        htmlPanelGrid.getChildren().add(responsableCreateOutput);
         
-        InputText tituloCreateInput = (InputText) application.createComponent(InputText.COMPONENT_TYPE);
-        tituloCreateInput.setId("tituloCreateInput");
-        tituloCreateInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.titulo}", String.class));
-        tituloCreateInput.setRequired(false);
-        htmlPanelGrid.getChildren().add(tituloCreateInput);
+        InputText responsableCreateInput = (InputText) application.createComponent(InputText.COMPONENT_TYPE);
+        responsableCreateInput.setId("responsableCreateInput");
+        responsableCreateInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.responsable}", String.class));
+        responsableCreateInput.setRequired(false);
+        htmlPanelGrid.getChildren().add(responsableCreateInput);
         
-        Message tituloCreateInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
-        tituloCreateInputMessage.setId("tituloCreateInputMessage");
-        tituloCreateInputMessage.setFor("tituloCreateInput");
-        tituloCreateInputMessage.setDisplay("icon");
-        htmlPanelGrid.getChildren().add(tituloCreateInputMessage);
+        Message responsableCreateInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
+        responsableCreateInputMessage.setId("responsableCreateInputMessage");
+        responsableCreateInputMessage.setFor("responsableCreateInput");
+        responsableCreateInputMessage.setDisplay("icon");
+        htmlPanelGrid.getChildren().add(responsableCreateInputMessage);
         
-        OutputLabel autorCreateOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
-        autorCreateOutput.setFor("autorCreateInput");
-        autorCreateOutput.setId("autorCreateOutput");
-        autorCreateOutput.setValue("Autor:");
-        htmlPanelGrid.getChildren().add(autorCreateOutput);
+        OutputLabel codigoCreateOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
+        codigoCreateOutput.setFor("codigoCreateInput");
+        codigoCreateOutput.setId("codigoCreateOutput");
+        codigoCreateOutput.setValue("Codigo:");
+        htmlPanelGrid.getChildren().add(codigoCreateOutput);
         
-        InputText autorCreateInput = (InputText) application.createComponent(InputText.COMPONENT_TYPE);
-        autorCreateInput.setId("autorCreateInput");
-        autorCreateInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.autor}", String.class));
-        autorCreateInput.setRequired(false);
-        htmlPanelGrid.getChildren().add(autorCreateInput);
+        InputText codigoCreateInput = (InputText) application.createComponent(InputText.COMPONENT_TYPE);
+        codigoCreateInput.setId("codigoCreateInput");
+        codigoCreateInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.codigo}", String.class));
+        codigoCreateInput.setRequired(false);
+        htmlPanelGrid.getChildren().add(codigoCreateInput);
         
-        Message autorCreateInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
-        autorCreateInputMessage.setId("autorCreateInputMessage");
-        autorCreateInputMessage.setFor("autorCreateInput");
-        autorCreateInputMessage.setDisplay("icon");
-        htmlPanelGrid.getChildren().add(autorCreateInputMessage);
+        Message codigoCreateInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
+        codigoCreateInputMessage.setId("codigoCreateInputMessage");
+        codigoCreateInputMessage.setFor("codigoCreateInput");
+        codigoCreateInputMessage.setDisplay("icon");
+        htmlPanelGrid.getChildren().add(codigoCreateInputMessage);
         
-        OutputLabel descripcionCreateOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
-        descripcionCreateOutput.setFor("descripcionCreateInput");
-        descripcionCreateOutput.setId("descripcionCreateOutput");
-        descripcionCreateOutput.setValue("Descripcion:");
-        htmlPanelGrid.getChildren().add(descripcionCreateOutput);
+        OutputLabel fechaDeInicioEstimadaCreateOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
+        fechaDeInicioEstimadaCreateOutput.setFor("fechaDeInicioEstimadaCreateInput");
+        fechaDeInicioEstimadaCreateOutput.setId("fechaDeInicioEstimadaCreateOutput");
+        fechaDeInicioEstimadaCreateOutput.setValue("Fecha De Inicio Estimada:");
+        htmlPanelGrid.getChildren().add(fechaDeInicioEstimadaCreateOutput);
         
-        InputText descripcionCreateInput = (InputText) application.createComponent(InputText.COMPONENT_TYPE);
-        descripcionCreateInput.setId("descripcionCreateInput");
-        descripcionCreateInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.descripcion}", String.class));
-        descripcionCreateInput.setRequired(false);
-        htmlPanelGrid.getChildren().add(descripcionCreateInput);
+        Calendar fechaDeInicioEstimadaCreateInput = (Calendar) application.createComponent(Calendar.COMPONENT_TYPE);
+        fechaDeInicioEstimadaCreateInput.setId("fechaDeInicioEstimadaCreateInput");
+        fechaDeInicioEstimadaCreateInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.fechaDeInicioEstimada}", Date.class));
+        fechaDeInicioEstimadaCreateInput.setNavigator(true);
+        fechaDeInicioEstimadaCreateInput.setEffect("slideDown");
+        fechaDeInicioEstimadaCreateInput.setPattern("dd/MM/yyyy");
+        fechaDeInicioEstimadaCreateInput.setRequired(false);
+        htmlPanelGrid.getChildren().add(fechaDeInicioEstimadaCreateInput);
         
-        Message descripcionCreateInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
-        descripcionCreateInputMessage.setId("descripcionCreateInputMessage");
-        descripcionCreateInputMessage.setFor("descripcionCreateInput");
-        descripcionCreateInputMessage.setDisplay("icon");
-        htmlPanelGrid.getChildren().add(descripcionCreateInputMessage);
+        Message fechaDeInicioEstimadaCreateInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
+        fechaDeInicioEstimadaCreateInputMessage.setId("fechaDeInicioEstimadaCreateInputMessage");
+        fechaDeInicioEstimadaCreateInputMessage.setFor("fechaDeInicioEstimadaCreateInput");
+        fechaDeInicioEstimadaCreateInputMessage.setDisplay("icon");
+        htmlPanelGrid.getChildren().add(fechaDeInicioEstimadaCreateInputMessage);
         
-        OutputLabel fechaCreateOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
-        fechaCreateOutput.setFor("fechaCreateInput");
-        fechaCreateOutput.setId("fechaCreateOutput");
-        fechaCreateOutput.setValue("Fecha:");
-        htmlPanelGrid.getChildren().add(fechaCreateOutput);
+        OutputLabel fechaDeInicioCreateOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
+        fechaDeInicioCreateOutput.setFor("fechaDeInicioCreateInput");
+        fechaDeInicioCreateOutput.setId("fechaDeInicioCreateOutput");
+        fechaDeInicioCreateOutput.setValue("Fecha De Inicio:");
+        htmlPanelGrid.getChildren().add(fechaDeInicioCreateOutput);
         
-        Calendar fechaCreateInput = (Calendar) application.createComponent(Calendar.COMPONENT_TYPE);
-        fechaCreateInput.setId("fechaCreateInput");
-        fechaCreateInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.fecha}", Date.class));
-        fechaCreateInput.setNavigator(true);
-        fechaCreateInput.setEffect("slideDown");
-        fechaCreateInput.setPattern("dd/MM/yyyy");
-        fechaCreateInput.setRequired(false);
-        htmlPanelGrid.getChildren().add(fechaCreateInput);
+        Calendar fechaDeInicioCreateInput = (Calendar) application.createComponent(Calendar.COMPONENT_TYPE);
+        fechaDeInicioCreateInput.setId("fechaDeInicioCreateInput");
+        fechaDeInicioCreateInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.fechaDeInicio}", Date.class));
+        fechaDeInicioCreateInput.setNavigator(true);
+        fechaDeInicioCreateInput.setEffect("slideDown");
+        fechaDeInicioCreateInput.setPattern("dd/MM/yyyy");
+        fechaDeInicioCreateInput.setRequired(false);
+        htmlPanelGrid.getChildren().add(fechaDeInicioCreateInput);
         
-        Message fechaCreateInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
-        fechaCreateInputMessage.setId("fechaCreateInputMessage");
-        fechaCreateInputMessage.setFor("fechaCreateInput");
-        fechaCreateInputMessage.setDisplay("icon");
-        htmlPanelGrid.getChildren().add(fechaCreateInputMessage);
+        Message fechaDeInicioCreateInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
+        fechaDeInicioCreateInputMessage.setId("fechaDeInicioCreateInputMessage");
+        fechaDeInicioCreateInputMessage.setFor("fechaDeInicioCreateInput");
+        fechaDeInicioCreateInputMessage.setDisplay("icon");
+        htmlPanelGrid.getChildren().add(fechaDeInicioCreateInputMessage);
         
-        OutputLabel linkALaCapacitacionCreateOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
-        linkALaCapacitacionCreateOutput.setFor("linkALaCapacitacionCreateInput");
-        linkALaCapacitacionCreateOutput.setId("linkALaCapacitacionCreateOutput");
-        linkALaCapacitacionCreateOutput.setValue("Link A La Capacitacion:");
-        htmlPanelGrid.getChildren().add(linkALaCapacitacionCreateOutput);
+        OutputLabel fechaDeFinalizacionEstimadaCreateOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
+        fechaDeFinalizacionEstimadaCreateOutput.setFor("fechaDeFinalizacionEstimadaCreateInput");
+        fechaDeFinalizacionEstimadaCreateOutput.setId("fechaDeFinalizacionEstimadaCreateOutput");
+        fechaDeFinalizacionEstimadaCreateOutput.setValue("Fecha De Finalizacion Estimada:");
+        htmlPanelGrid.getChildren().add(fechaDeFinalizacionEstimadaCreateOutput);
         
-        InputText linkALaCapacitacionCreateInput = (InputText) application.createComponent(InputText.COMPONENT_TYPE);
-        linkALaCapacitacionCreateInput.setId("linkALaCapacitacionCreateInput");
-        linkALaCapacitacionCreateInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.linkALaCapacitacion}", String.class));
-        linkALaCapacitacionCreateInput.setRequired(false);
-        htmlPanelGrid.getChildren().add(linkALaCapacitacionCreateInput);
+        Calendar fechaDeFinalizacionEstimadaCreateInput = (Calendar) application.createComponent(Calendar.COMPONENT_TYPE);
+        fechaDeFinalizacionEstimadaCreateInput.setId("fechaDeFinalizacionEstimadaCreateInput");
+        fechaDeFinalizacionEstimadaCreateInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.fechaDeFinalizacionEstimada}", Date.class));
+        fechaDeFinalizacionEstimadaCreateInput.setNavigator(true);
+        fechaDeFinalizacionEstimadaCreateInput.setEffect("slideDown");
+        fechaDeFinalizacionEstimadaCreateInput.setPattern("dd/MM/yyyy");
+        fechaDeFinalizacionEstimadaCreateInput.setRequired(false);
+        htmlPanelGrid.getChildren().add(fechaDeFinalizacionEstimadaCreateInput);
         
-        Message linkALaCapacitacionCreateInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
-        linkALaCapacitacionCreateInputMessage.setId("linkALaCapacitacionCreateInputMessage");
-        linkALaCapacitacionCreateInputMessage.setFor("linkALaCapacitacionCreateInput");
-        linkALaCapacitacionCreateInputMessage.setDisplay("icon");
-        htmlPanelGrid.getChildren().add(linkALaCapacitacionCreateInputMessage);
+        Message fechaDeFinalizacionEstimadaCreateInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
+        fechaDeFinalizacionEstimadaCreateInputMessage.setId("fechaDeFinalizacionEstimadaCreateInputMessage");
+        fechaDeFinalizacionEstimadaCreateInputMessage.setFor("fechaDeFinalizacionEstimadaCreateInput");
+        fechaDeFinalizacionEstimadaCreateInputMessage.setDisplay("icon");
+        htmlPanelGrid.getChildren().add(fechaDeFinalizacionEstimadaCreateInputMessage);
+        
+        OutputLabel fechaDeFinalizacionCreateOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
+        fechaDeFinalizacionCreateOutput.setFor("fechaDeFinalizacionCreateInput");
+        fechaDeFinalizacionCreateOutput.setId("fechaDeFinalizacionCreateOutput");
+        fechaDeFinalizacionCreateOutput.setValue("Fecha De Finalizacion:");
+        htmlPanelGrid.getChildren().add(fechaDeFinalizacionCreateOutput);
+        
+        Calendar fechaDeFinalizacionCreateInput = (Calendar) application.createComponent(Calendar.COMPONENT_TYPE);
+        fechaDeFinalizacionCreateInput.setId("fechaDeFinalizacionCreateInput");
+        fechaDeFinalizacionCreateInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.fechaDeFinalizacion}", Date.class));
+        fechaDeFinalizacionCreateInput.setNavigator(true);
+        fechaDeFinalizacionCreateInput.setEffect("slideDown");
+        fechaDeFinalizacionCreateInput.setPattern("dd/MM/yyyy");
+        fechaDeFinalizacionCreateInput.setRequired(false);
+        htmlPanelGrid.getChildren().add(fechaDeFinalizacionCreateInput);
+        
+        Message fechaDeFinalizacionCreateInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
+        fechaDeFinalizacionCreateInputMessage.setId("fechaDeFinalizacionCreateInputMessage");
+        fechaDeFinalizacionCreateInputMessage.setFor("fechaDeFinalizacionCreateInput");
+        fechaDeFinalizacionCreateInputMessage.setDisplay("icon");
+        htmlPanelGrid.getChildren().add(fechaDeFinalizacionCreateInputMessage);
+        
+        OutputLabel ingenieriaCreateOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
+        ingenieriaCreateOutput.setFor("ingenieriaCreateInput");
+        ingenieriaCreateOutput.setId("ingenieriaCreateOutput");
+        ingenieriaCreateOutput.setValue("Ingenieria:");
+        htmlPanelGrid.getChildren().add(ingenieriaCreateOutput);
+        
+        InputText ingenieriaCreateInput = (InputText) application.createComponent(InputText.COMPONENT_TYPE);
+        ingenieriaCreateInput.setId("ingenieriaCreateInput");
+        ingenieriaCreateInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.ingenieria}", String.class));
+        ingenieriaCreateInput.setRequired(false);
+        htmlPanelGrid.getChildren().add(ingenieriaCreateInput);
+        
+        Message ingenieriaCreateInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
+        ingenieriaCreateInputMessage.setId("ingenieriaCreateInputMessage");
+        ingenieriaCreateInputMessage.setFor("ingenieriaCreateInput");
+        ingenieriaCreateInputMessage.setDisplay("icon");
+        htmlPanelGrid.getChildren().add(ingenieriaCreateInputMessage);
+        
+        OutputLabel cronogramaCreateOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
+        cronogramaCreateOutput.setFor("cronogramaCreateInput");
+        cronogramaCreateOutput.setId("cronogramaCreateOutput");
+        cronogramaCreateOutput.setValue("Cronograma:");
+        htmlPanelGrid.getChildren().add(cronogramaCreateOutput);
+        
+        InputText cronogramaCreateInput = (InputText) application.createComponent(InputText.COMPONENT_TYPE);
+        cronogramaCreateInput.setId("cronogramaCreateInput");
+        cronogramaCreateInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.cronograma}", String.class));
+        cronogramaCreateInput.setRequired(false);
+        htmlPanelGrid.getChildren().add(cronogramaCreateInput);
+        
+        Message cronogramaCreateInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
+        cronogramaCreateInputMessage.setId("cronogramaCreateInputMessage");
+        cronogramaCreateInputMessage.setFor("cronogramaCreateInput");
+        cronogramaCreateInputMessage.setDisplay("icon");
+        htmlPanelGrid.getChildren().add(cronogramaCreateInputMessage);
+        
+        OutputLabel informacionRecibidaCreateOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
+        informacionRecibidaCreateOutput.setFor("informacionRecibidaCreateInput");
+        informacionRecibidaCreateOutput.setId("informacionRecibidaCreateOutput");
+        informacionRecibidaCreateOutput.setValue("Informacion Recibida:");
+        htmlPanelGrid.getChildren().add(informacionRecibidaCreateOutput);
+        
+        InputText informacionRecibidaCreateInput = (InputText) application.createComponent(InputText.COMPONENT_TYPE);
+        informacionRecibidaCreateInput.setId("informacionRecibidaCreateInput");
+        informacionRecibidaCreateInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.informacionRecibida}", String.class));
+        informacionRecibidaCreateInput.setRequired(false);
+        htmlPanelGrid.getChildren().add(informacionRecibidaCreateInput);
+        
+        Message informacionRecibidaCreateInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
+        informacionRecibidaCreateInputMessage.setId("informacionRecibidaCreateInputMessage");
+        informacionRecibidaCreateInputMessage.setFor("informacionRecibidaCreateInput");
+        informacionRecibidaCreateInputMessage.setDisplay("icon");
+        htmlPanelGrid.getChildren().add(informacionRecibidaCreateInputMessage);
+        
+        OutputLabel auditoriaVirtualCreateOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
+        auditoriaVirtualCreateOutput.setFor("auditoriaVirtualCreateInput");
+        auditoriaVirtualCreateOutput.setId("auditoriaVirtualCreateOutput");
+        auditoriaVirtualCreateOutput.setValue("Auditoria Virtual:");
+        htmlPanelGrid.getChildren().add(auditoriaVirtualCreateOutput);
+        
+        InputText auditoriaVirtualCreateInput = (InputText) application.createComponent(InputText.COMPONENT_TYPE);
+        auditoriaVirtualCreateInput.setId("auditoriaVirtualCreateInput");
+        auditoriaVirtualCreateInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.auditoriaVirtual}", String.class));
+        auditoriaVirtualCreateInput.setRequired(false);
+        htmlPanelGrid.getChildren().add(auditoriaVirtualCreateInput);
+        
+        Message auditoriaVirtualCreateInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
+        auditoriaVirtualCreateInputMessage.setId("auditoriaVirtualCreateInputMessage");
+        auditoriaVirtualCreateInputMessage.setFor("auditoriaVirtualCreateInput");
+        auditoriaVirtualCreateInputMessage.setDisplay("icon");
+        htmlPanelGrid.getChildren().add(auditoriaVirtualCreateInputMessage);
+        
+        OutputLabel correccionesDeAuditoriaCreateOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
+        correccionesDeAuditoriaCreateOutput.setFor("correccionesDeAuditoriaCreateInput");
+        correccionesDeAuditoriaCreateOutput.setId("correccionesDeAuditoriaCreateOutput");
+        correccionesDeAuditoriaCreateOutput.setValue("Correcciones De Auditoria:");
+        htmlPanelGrid.getChildren().add(correccionesDeAuditoriaCreateOutput);
+        
+        InputText correccionesDeAuditoriaCreateInput = (InputText) application.createComponent(InputText.COMPONENT_TYPE);
+        correccionesDeAuditoriaCreateInput.setId("correccionesDeAuditoriaCreateInput");
+        correccionesDeAuditoriaCreateInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.correccionesDeAuditoria}", String.class));
+        correccionesDeAuditoriaCreateInput.setRequired(false);
+        htmlPanelGrid.getChildren().add(correccionesDeAuditoriaCreateInput);
+        
+        Message correccionesDeAuditoriaCreateInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
+        correccionesDeAuditoriaCreateInputMessage.setId("correccionesDeAuditoriaCreateInputMessage");
+        correccionesDeAuditoriaCreateInputMessage.setFor("correccionesDeAuditoriaCreateInput");
+        correccionesDeAuditoriaCreateInputMessage.setDisplay("icon");
+        htmlPanelGrid.getChildren().add(correccionesDeAuditoriaCreateInputMessage);
+        
+        OutputLabel auditoriaCorregidaCreateOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
+        auditoriaCorregidaCreateOutput.setFor("auditoriaCorregidaCreateInput");
+        auditoriaCorregidaCreateOutput.setId("auditoriaCorregidaCreateOutput");
+        auditoriaCorregidaCreateOutput.setValue("Auditoria Corregida:");
+        htmlPanelGrid.getChildren().add(auditoriaCorregidaCreateOutput);
+        
+        InputText auditoriaCorregidaCreateInput = (InputText) application.createComponent(InputText.COMPONENT_TYPE);
+        auditoriaCorregidaCreateInput.setId("auditoriaCorregidaCreateInput");
+        auditoriaCorregidaCreateInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.auditoriaCorregida}", String.class));
+        auditoriaCorregidaCreateInput.setRequired(false);
+        htmlPanelGrid.getChildren().add(auditoriaCorregidaCreateInput);
+        
+        Message auditoriaCorregidaCreateInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
+        auditoriaCorregidaCreateInputMessage.setId("auditoriaCorregidaCreateInputMessage");
+        auditoriaCorregidaCreateInputMessage.setFor("auditoriaCorregidaCreateInput");
+        auditoriaCorregidaCreateInputMessage.setDisplay("icon");
+        htmlPanelGrid.getChildren().add(auditoriaCorregidaCreateInputMessage);
+        
+        OutputLabel comentariosYObservacionesCreateOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
+        comentariosYObservacionesCreateOutput.setFor("comentariosYObservacionesCreateInput");
+        comentariosYObservacionesCreateOutput.setId("comentariosYObservacionesCreateOutput");
+        comentariosYObservacionesCreateOutput.setValue("Comentarios Y Observaciones:");
+        htmlPanelGrid.getChildren().add(comentariosYObservacionesCreateOutput);
+        
+        InputText comentariosYObservacionesCreateInput = (InputText) application.createComponent(InputText.COMPONENT_TYPE);
+        comentariosYObservacionesCreateInput.setId("comentariosYObservacionesCreateInput");
+        comentariosYObservacionesCreateInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.comentariosYObservaciones}", String.class));
+        comentariosYObservacionesCreateInput.setRequired(false);
+        htmlPanelGrid.getChildren().add(comentariosYObservacionesCreateInput);
+        
+        Message comentariosYObservacionesCreateInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
+        comentariosYObservacionesCreateInputMessage.setId("comentariosYObservacionesCreateInputMessage");
+        comentariosYObservacionesCreateInputMessage.setFor("comentariosYObservacionesCreateInput");
+        comentariosYObservacionesCreateInputMessage.setDisplay("icon");
+        htmlPanelGrid.getChildren().add(comentariosYObservacionesCreateInputMessage);
         
         return htmlPanelGrid;
     }
@@ -232,98 +385,251 @@ privileged aspect ProyectoBean_Roo_ManagedBean {
         
         HtmlPanelGrid htmlPanelGrid = (HtmlPanelGrid) application.createComponent(HtmlPanelGrid.COMPONENT_TYPE);
         
-        OutputLabel tituloEditOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
-        tituloEditOutput.setFor("tituloEditInput");
-        tituloEditOutput.setId("tituloEditOutput");
-        tituloEditOutput.setValue("Titulo:");
-        htmlPanelGrid.getChildren().add(tituloEditOutput);
+        OutputLabel responsableEditOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
+        responsableEditOutput.setFor("responsableEditInput");
+        responsableEditOutput.setId("responsableEditOutput");
+        responsableEditOutput.setValue("Responsable:");
+        htmlPanelGrid.getChildren().add(responsableEditOutput);
         
-        InputText tituloEditInput = (InputText) application.createComponent(InputText.COMPONENT_TYPE);
-        tituloEditInput.setId("tituloEditInput");
-        tituloEditInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.titulo}", String.class));
-        tituloEditInput.setRequired(false);
-        htmlPanelGrid.getChildren().add(tituloEditInput);
+        InputText responsableEditInput = (InputText) application.createComponent(InputText.COMPONENT_TYPE);
+        responsableEditInput.setId("responsableEditInput");
+        responsableEditInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.responsable}", String.class));
+        responsableEditInput.setRequired(false);
+        htmlPanelGrid.getChildren().add(responsableEditInput);
         
-        Message tituloEditInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
-        tituloEditInputMessage.setId("tituloEditInputMessage");
-        tituloEditInputMessage.setFor("tituloEditInput");
-        tituloEditInputMessage.setDisplay("icon");
-        htmlPanelGrid.getChildren().add(tituloEditInputMessage);
+        Message responsableEditInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
+        responsableEditInputMessage.setId("responsableEditInputMessage");
+        responsableEditInputMessage.setFor("responsableEditInput");
+        responsableEditInputMessage.setDisplay("icon");
+        htmlPanelGrid.getChildren().add(responsableEditInputMessage);
         
-        OutputLabel autorEditOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
-        autorEditOutput.setFor("autorEditInput");
-        autorEditOutput.setId("autorEditOutput");
-        autorEditOutput.setValue("Autor:");
-        htmlPanelGrid.getChildren().add(autorEditOutput);
+        OutputLabel codigoEditOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
+        codigoEditOutput.setFor("codigoEditInput");
+        codigoEditOutput.setId("codigoEditOutput");
+        codigoEditOutput.setValue("Codigo:");
+        htmlPanelGrid.getChildren().add(codigoEditOutput);
         
-        InputText autorEditInput = (InputText) application.createComponent(InputText.COMPONENT_TYPE);
-        autorEditInput.setId("autorEditInput");
-        autorEditInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.autor}", String.class));
-        autorEditInput.setRequired(false);
-        htmlPanelGrid.getChildren().add(autorEditInput);
+        InputText codigoEditInput = (InputText) application.createComponent(InputText.COMPONENT_TYPE);
+        codigoEditInput.setId("codigoEditInput");
+        codigoEditInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.codigo}", String.class));
+        codigoEditInput.setRequired(false);
+        htmlPanelGrid.getChildren().add(codigoEditInput);
         
-        Message autorEditInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
-        autorEditInputMessage.setId("autorEditInputMessage");
-        autorEditInputMessage.setFor("autorEditInput");
-        autorEditInputMessage.setDisplay("icon");
-        htmlPanelGrid.getChildren().add(autorEditInputMessage);
+        Message codigoEditInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
+        codigoEditInputMessage.setId("codigoEditInputMessage");
+        codigoEditInputMessage.setFor("codigoEditInput");
+        codigoEditInputMessage.setDisplay("icon");
+        htmlPanelGrid.getChildren().add(codigoEditInputMessage);
         
-        OutputLabel descripcionEditOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
-        descripcionEditOutput.setFor("descripcionEditInput");
-        descripcionEditOutput.setId("descripcionEditOutput");
-        descripcionEditOutput.setValue("Descripcion:");
-        htmlPanelGrid.getChildren().add(descripcionEditOutput);
+        OutputLabel fechaDeInicioEstimadaEditOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
+        fechaDeInicioEstimadaEditOutput.setFor("fechaDeInicioEstimadaEditInput");
+        fechaDeInicioEstimadaEditOutput.setId("fechaDeInicioEstimadaEditOutput");
+        fechaDeInicioEstimadaEditOutput.setValue("Fecha De Inicio Estimada:");
+        htmlPanelGrid.getChildren().add(fechaDeInicioEstimadaEditOutput);
         
-        InputText descripcionEditInput = (InputText) application.createComponent(InputText.COMPONENT_TYPE);
-        descripcionEditInput.setId("descripcionEditInput");
-        descripcionEditInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.descripcion}", String.class));
-        descripcionEditInput.setRequired(false);
-        htmlPanelGrid.getChildren().add(descripcionEditInput);
+        Calendar fechaDeInicioEstimadaEditInput = (Calendar) application.createComponent(Calendar.COMPONENT_TYPE);
+        fechaDeInicioEstimadaEditInput.setId("fechaDeInicioEstimadaEditInput");
+        fechaDeInicioEstimadaEditInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.fechaDeInicioEstimada}", Date.class));
+        fechaDeInicioEstimadaEditInput.setNavigator(true);
+        fechaDeInicioEstimadaEditInput.setEffect("slideDown");
+        fechaDeInicioEstimadaEditInput.setPattern("dd/MM/yyyy");
+        fechaDeInicioEstimadaEditInput.setRequired(false);
+        htmlPanelGrid.getChildren().add(fechaDeInicioEstimadaEditInput);
         
-        Message descripcionEditInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
-        descripcionEditInputMessage.setId("descripcionEditInputMessage");
-        descripcionEditInputMessage.setFor("descripcionEditInput");
-        descripcionEditInputMessage.setDisplay("icon");
-        htmlPanelGrid.getChildren().add(descripcionEditInputMessage);
+        Message fechaDeInicioEstimadaEditInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
+        fechaDeInicioEstimadaEditInputMessage.setId("fechaDeInicioEstimadaEditInputMessage");
+        fechaDeInicioEstimadaEditInputMessage.setFor("fechaDeInicioEstimadaEditInput");
+        fechaDeInicioEstimadaEditInputMessage.setDisplay("icon");
+        htmlPanelGrid.getChildren().add(fechaDeInicioEstimadaEditInputMessage);
         
-        OutputLabel fechaEditOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
-        fechaEditOutput.setFor("fechaEditInput");
-        fechaEditOutput.setId("fechaEditOutput");
-        fechaEditOutput.setValue("Fecha:");
-        htmlPanelGrid.getChildren().add(fechaEditOutput);
+        OutputLabel fechaDeInicioEditOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
+        fechaDeInicioEditOutput.setFor("fechaDeInicioEditInput");
+        fechaDeInicioEditOutput.setId("fechaDeInicioEditOutput");
+        fechaDeInicioEditOutput.setValue("Fecha De Inicio:");
+        htmlPanelGrid.getChildren().add(fechaDeInicioEditOutput);
         
-        Calendar fechaEditInput = (Calendar) application.createComponent(Calendar.COMPONENT_TYPE);
-        fechaEditInput.setId("fechaEditInput");
-        fechaEditInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.fecha}", Date.class));
-        fechaEditInput.setNavigator(true);
-        fechaEditInput.setEffect("slideDown");
-        fechaEditInput.setPattern("dd/MM/yyyy");
-        fechaEditInput.setRequired(false);
-        htmlPanelGrid.getChildren().add(fechaEditInput);
+        Calendar fechaDeInicioEditInput = (Calendar) application.createComponent(Calendar.COMPONENT_TYPE);
+        fechaDeInicioEditInput.setId("fechaDeInicioEditInput");
+        fechaDeInicioEditInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.fechaDeInicio}", Date.class));
+        fechaDeInicioEditInput.setNavigator(true);
+        fechaDeInicioEditInput.setEffect("slideDown");
+        fechaDeInicioEditInput.setPattern("dd/MM/yyyy");
+        fechaDeInicioEditInput.setRequired(false);
+        htmlPanelGrid.getChildren().add(fechaDeInicioEditInput);
         
-        Message fechaEditInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
-        fechaEditInputMessage.setId("fechaEditInputMessage");
-        fechaEditInputMessage.setFor("fechaEditInput");
-        fechaEditInputMessage.setDisplay("icon");
-        htmlPanelGrid.getChildren().add(fechaEditInputMessage);
+        Message fechaDeInicioEditInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
+        fechaDeInicioEditInputMessage.setId("fechaDeInicioEditInputMessage");
+        fechaDeInicioEditInputMessage.setFor("fechaDeInicioEditInput");
+        fechaDeInicioEditInputMessage.setDisplay("icon");
+        htmlPanelGrid.getChildren().add(fechaDeInicioEditInputMessage);
         
-        OutputLabel linkALaCapacitacionEditOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
-        linkALaCapacitacionEditOutput.setFor("linkALaCapacitacionEditInput");
-        linkALaCapacitacionEditOutput.setId("linkALaCapacitacionEditOutput");
-        linkALaCapacitacionEditOutput.setValue("Link A La Capacitacion:");
-        htmlPanelGrid.getChildren().add(linkALaCapacitacionEditOutput);
+        OutputLabel fechaDeFinalizacionEstimadaEditOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
+        fechaDeFinalizacionEstimadaEditOutput.setFor("fechaDeFinalizacionEstimadaEditInput");
+        fechaDeFinalizacionEstimadaEditOutput.setId("fechaDeFinalizacionEstimadaEditOutput");
+        fechaDeFinalizacionEstimadaEditOutput.setValue("Fecha De Finalizacion Estimada:");
+        htmlPanelGrid.getChildren().add(fechaDeFinalizacionEstimadaEditOutput);
         
-        InputText linkALaCapacitacionEditInput = (InputText) application.createComponent(InputText.COMPONENT_TYPE);
-        linkALaCapacitacionEditInput.setId("linkALaCapacitacionEditInput");
-        linkALaCapacitacionEditInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.linkALaCapacitacion}", String.class));
-        linkALaCapacitacionEditInput.setRequired(false);
-        htmlPanelGrid.getChildren().add(linkALaCapacitacionEditInput);
+        Calendar fechaDeFinalizacionEstimadaEditInput = (Calendar) application.createComponent(Calendar.COMPONENT_TYPE);
+        fechaDeFinalizacionEstimadaEditInput.setId("fechaDeFinalizacionEstimadaEditInput");
+        fechaDeFinalizacionEstimadaEditInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.fechaDeFinalizacionEstimada}", Date.class));
+        fechaDeFinalizacionEstimadaEditInput.setNavigator(true);
+        fechaDeFinalizacionEstimadaEditInput.setEffect("slideDown");
+        fechaDeFinalizacionEstimadaEditInput.setPattern("dd/MM/yyyy");
+        fechaDeFinalizacionEstimadaEditInput.setRequired(false);
+        htmlPanelGrid.getChildren().add(fechaDeFinalizacionEstimadaEditInput);
         
-        Message linkALaCapacitacionEditInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
-        linkALaCapacitacionEditInputMessage.setId("linkALaCapacitacionEditInputMessage");
-        linkALaCapacitacionEditInputMessage.setFor("linkALaCapacitacionEditInput");
-        linkALaCapacitacionEditInputMessage.setDisplay("icon");
-        htmlPanelGrid.getChildren().add(linkALaCapacitacionEditInputMessage);
+        Message fechaDeFinalizacionEstimadaEditInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
+        fechaDeFinalizacionEstimadaEditInputMessage.setId("fechaDeFinalizacionEstimadaEditInputMessage");
+        fechaDeFinalizacionEstimadaEditInputMessage.setFor("fechaDeFinalizacionEstimadaEditInput");
+        fechaDeFinalizacionEstimadaEditInputMessage.setDisplay("icon");
+        htmlPanelGrid.getChildren().add(fechaDeFinalizacionEstimadaEditInputMessage);
+        
+        OutputLabel fechaDeFinalizacionEditOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
+        fechaDeFinalizacionEditOutput.setFor("fechaDeFinalizacionEditInput");
+        fechaDeFinalizacionEditOutput.setId("fechaDeFinalizacionEditOutput");
+        fechaDeFinalizacionEditOutput.setValue("Fecha De Finalizacion:");
+        htmlPanelGrid.getChildren().add(fechaDeFinalizacionEditOutput);
+        
+        Calendar fechaDeFinalizacionEditInput = (Calendar) application.createComponent(Calendar.COMPONENT_TYPE);
+        fechaDeFinalizacionEditInput.setId("fechaDeFinalizacionEditInput");
+        fechaDeFinalizacionEditInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.fechaDeFinalizacion}", Date.class));
+        fechaDeFinalizacionEditInput.setNavigator(true);
+        fechaDeFinalizacionEditInput.setEffect("slideDown");
+        fechaDeFinalizacionEditInput.setPattern("dd/MM/yyyy");
+        fechaDeFinalizacionEditInput.setRequired(false);
+        htmlPanelGrid.getChildren().add(fechaDeFinalizacionEditInput);
+        
+        Message fechaDeFinalizacionEditInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
+        fechaDeFinalizacionEditInputMessage.setId("fechaDeFinalizacionEditInputMessage");
+        fechaDeFinalizacionEditInputMessage.setFor("fechaDeFinalizacionEditInput");
+        fechaDeFinalizacionEditInputMessage.setDisplay("icon");
+        htmlPanelGrid.getChildren().add(fechaDeFinalizacionEditInputMessage);
+        
+        OutputLabel ingenieriaEditOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
+        ingenieriaEditOutput.setFor("ingenieriaEditInput");
+        ingenieriaEditOutput.setId("ingenieriaEditOutput");
+        ingenieriaEditOutput.setValue("Ingenieria:");
+        htmlPanelGrid.getChildren().add(ingenieriaEditOutput);
+        
+        InputText ingenieriaEditInput = (InputText) application.createComponent(InputText.COMPONENT_TYPE);
+        ingenieriaEditInput.setId("ingenieriaEditInput");
+        ingenieriaEditInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.ingenieria}", String.class));
+        ingenieriaEditInput.setRequired(false);
+        htmlPanelGrid.getChildren().add(ingenieriaEditInput);
+        
+        Message ingenieriaEditInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
+        ingenieriaEditInputMessage.setId("ingenieriaEditInputMessage");
+        ingenieriaEditInputMessage.setFor("ingenieriaEditInput");
+        ingenieriaEditInputMessage.setDisplay("icon");
+        htmlPanelGrid.getChildren().add(ingenieriaEditInputMessage);
+        
+        OutputLabel cronogramaEditOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
+        cronogramaEditOutput.setFor("cronogramaEditInput");
+        cronogramaEditOutput.setId("cronogramaEditOutput");
+        cronogramaEditOutput.setValue("Cronograma:");
+        htmlPanelGrid.getChildren().add(cronogramaEditOutput);
+        
+        InputText cronogramaEditInput = (InputText) application.createComponent(InputText.COMPONENT_TYPE);
+        cronogramaEditInput.setId("cronogramaEditInput");
+        cronogramaEditInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.cronograma}", String.class));
+        cronogramaEditInput.setRequired(false);
+        htmlPanelGrid.getChildren().add(cronogramaEditInput);
+        
+        Message cronogramaEditInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
+        cronogramaEditInputMessage.setId("cronogramaEditInputMessage");
+        cronogramaEditInputMessage.setFor("cronogramaEditInput");
+        cronogramaEditInputMessage.setDisplay("icon");
+        htmlPanelGrid.getChildren().add(cronogramaEditInputMessage);
+        
+        OutputLabel informacionRecibidaEditOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
+        informacionRecibidaEditOutput.setFor("informacionRecibidaEditInput");
+        informacionRecibidaEditOutput.setId("informacionRecibidaEditOutput");
+        informacionRecibidaEditOutput.setValue("Informacion Recibida:");
+        htmlPanelGrid.getChildren().add(informacionRecibidaEditOutput);
+        
+        InputText informacionRecibidaEditInput = (InputText) application.createComponent(InputText.COMPONENT_TYPE);
+        informacionRecibidaEditInput.setId("informacionRecibidaEditInput");
+        informacionRecibidaEditInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.informacionRecibida}", String.class));
+        informacionRecibidaEditInput.setRequired(false);
+        htmlPanelGrid.getChildren().add(informacionRecibidaEditInput);
+        
+        Message informacionRecibidaEditInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
+        informacionRecibidaEditInputMessage.setId("informacionRecibidaEditInputMessage");
+        informacionRecibidaEditInputMessage.setFor("informacionRecibidaEditInput");
+        informacionRecibidaEditInputMessage.setDisplay("icon");
+        htmlPanelGrid.getChildren().add(informacionRecibidaEditInputMessage);
+        
+        OutputLabel auditoriaVirtualEditOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
+        auditoriaVirtualEditOutput.setFor("auditoriaVirtualEditInput");
+        auditoriaVirtualEditOutput.setId("auditoriaVirtualEditOutput");
+        auditoriaVirtualEditOutput.setValue("Auditoria Virtual:");
+        htmlPanelGrid.getChildren().add(auditoriaVirtualEditOutput);
+        
+        InputText auditoriaVirtualEditInput = (InputText) application.createComponent(InputText.COMPONENT_TYPE);
+        auditoriaVirtualEditInput.setId("auditoriaVirtualEditInput");
+        auditoriaVirtualEditInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.auditoriaVirtual}", String.class));
+        auditoriaVirtualEditInput.setRequired(false);
+        htmlPanelGrid.getChildren().add(auditoriaVirtualEditInput);
+        
+        Message auditoriaVirtualEditInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
+        auditoriaVirtualEditInputMessage.setId("auditoriaVirtualEditInputMessage");
+        auditoriaVirtualEditInputMessage.setFor("auditoriaVirtualEditInput");
+        auditoriaVirtualEditInputMessage.setDisplay("icon");
+        htmlPanelGrid.getChildren().add(auditoriaVirtualEditInputMessage);
+        
+        OutputLabel correccionesDeAuditoriaEditOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
+        correccionesDeAuditoriaEditOutput.setFor("correccionesDeAuditoriaEditInput");
+        correccionesDeAuditoriaEditOutput.setId("correccionesDeAuditoriaEditOutput");
+        correccionesDeAuditoriaEditOutput.setValue("Correcciones De Auditoria:");
+        htmlPanelGrid.getChildren().add(correccionesDeAuditoriaEditOutput);
+        
+        InputText correccionesDeAuditoriaEditInput = (InputText) application.createComponent(InputText.COMPONENT_TYPE);
+        correccionesDeAuditoriaEditInput.setId("correccionesDeAuditoriaEditInput");
+        correccionesDeAuditoriaEditInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.correccionesDeAuditoria}", String.class));
+        correccionesDeAuditoriaEditInput.setRequired(false);
+        htmlPanelGrid.getChildren().add(correccionesDeAuditoriaEditInput);
+        
+        Message correccionesDeAuditoriaEditInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
+        correccionesDeAuditoriaEditInputMessage.setId("correccionesDeAuditoriaEditInputMessage");
+        correccionesDeAuditoriaEditInputMessage.setFor("correccionesDeAuditoriaEditInput");
+        correccionesDeAuditoriaEditInputMessage.setDisplay("icon");
+        htmlPanelGrid.getChildren().add(correccionesDeAuditoriaEditInputMessage);
+        
+        OutputLabel auditoriaCorregidaEditOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
+        auditoriaCorregidaEditOutput.setFor("auditoriaCorregidaEditInput");
+        auditoriaCorregidaEditOutput.setId("auditoriaCorregidaEditOutput");
+        auditoriaCorregidaEditOutput.setValue("Auditoria Corregida:");
+        htmlPanelGrid.getChildren().add(auditoriaCorregidaEditOutput);
+        
+        InputText auditoriaCorregidaEditInput = (InputText) application.createComponent(InputText.COMPONENT_TYPE);
+        auditoriaCorregidaEditInput.setId("auditoriaCorregidaEditInput");
+        auditoriaCorregidaEditInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.auditoriaCorregida}", String.class));
+        auditoriaCorregidaEditInput.setRequired(false);
+        htmlPanelGrid.getChildren().add(auditoriaCorregidaEditInput);
+        
+        Message auditoriaCorregidaEditInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
+        auditoriaCorregidaEditInputMessage.setId("auditoriaCorregidaEditInputMessage");
+        auditoriaCorregidaEditInputMessage.setFor("auditoriaCorregidaEditInput");
+        auditoriaCorregidaEditInputMessage.setDisplay("icon");
+        htmlPanelGrid.getChildren().add(auditoriaCorregidaEditInputMessage);
+        
+        OutputLabel comentariosYObservacionesEditOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
+        comentariosYObservacionesEditOutput.setFor("comentariosYObservacionesEditInput");
+        comentariosYObservacionesEditOutput.setId("comentariosYObservacionesEditOutput");
+        comentariosYObservacionesEditOutput.setValue("Comentarios Y Observaciones:");
+        htmlPanelGrid.getChildren().add(comentariosYObservacionesEditOutput);
+        
+        InputText comentariosYObservacionesEditInput = (InputText) application.createComponent(InputText.COMPONENT_TYPE);
+        comentariosYObservacionesEditInput.setId("comentariosYObservacionesEditInput");
+        comentariosYObservacionesEditInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.comentariosYObservaciones}", String.class));
+        comentariosYObservacionesEditInput.setRequired(false);
+        htmlPanelGrid.getChildren().add(comentariosYObservacionesEditInput);
+        
+        Message comentariosYObservacionesEditInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
+        comentariosYObservacionesEditInputMessage.setId("comentariosYObservacionesEditInputMessage");
+        comentariosYObservacionesEditInputMessage.setFor("comentariosYObservacionesEditInput");
+        comentariosYObservacionesEditInputMessage.setDisplay("icon");
+        htmlPanelGrid.getChildren().add(comentariosYObservacionesEditInputMessage);
         
         return htmlPanelGrid;
     }
@@ -336,57 +642,143 @@ privileged aspect ProyectoBean_Roo_ManagedBean {
         
         HtmlPanelGrid htmlPanelGrid = (HtmlPanelGrid) application.createComponent(HtmlPanelGrid.COMPONENT_TYPE);
         
-        HtmlOutputText tituloLabel = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
-        tituloLabel.setId("tituloLabel");
-        tituloLabel.setValue("Titulo:");
-        htmlPanelGrid.getChildren().add(tituloLabel);
+        HtmlOutputText responsableLabel = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
+        responsableLabel.setId("responsableLabel");
+        responsableLabel.setValue("Responsable:");
+        htmlPanelGrid.getChildren().add(responsableLabel);
         
-        HtmlOutputText tituloValue = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
-        tituloValue.setId("tituloValue");
-        tituloValue.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.titulo}", String.class));
-        htmlPanelGrid.getChildren().add(tituloValue);
+        HtmlOutputText responsableValue = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
+        responsableValue.setId("responsableValue");
+        responsableValue.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.responsable}", String.class));
+        htmlPanelGrid.getChildren().add(responsableValue);
         
-        HtmlOutputText autorLabel = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
-        autorLabel.setId("autorLabel");
-        autorLabel.setValue("Autor:");
-        htmlPanelGrid.getChildren().add(autorLabel);
+        HtmlOutputText codigoLabel = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
+        codigoLabel.setId("codigoLabel");
+        codigoLabel.setValue("Codigo:");
+        htmlPanelGrid.getChildren().add(codigoLabel);
         
-        HtmlOutputText autorValue = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
-        autorValue.setId("autorValue");
-        autorValue.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.autor}", String.class));
-        htmlPanelGrid.getChildren().add(autorValue);
+        HtmlOutputText codigoValue = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
+        codigoValue.setId("codigoValue");
+        codigoValue.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.codigo}", String.class));
+        htmlPanelGrid.getChildren().add(codigoValue);
         
-        HtmlOutputText descripcionLabel = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
-        descripcionLabel.setId("descripcionLabel");
-        descripcionLabel.setValue("Descripcion:");
-        htmlPanelGrid.getChildren().add(descripcionLabel);
+        HtmlOutputText fechaDeInicioEstimadaLabel = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
+        fechaDeInicioEstimadaLabel.setId("fechaDeInicioEstimadaLabel");
+        fechaDeInicioEstimadaLabel.setValue("Fecha De Inicio Estimada:");
+        htmlPanelGrid.getChildren().add(fechaDeInicioEstimadaLabel);
         
-        HtmlOutputText descripcionValue = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
-        descripcionValue.setId("descripcionValue");
-        descripcionValue.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.descripcion}", String.class));
-        htmlPanelGrid.getChildren().add(descripcionValue);
+        HtmlOutputText fechaDeInicioEstimadaValue = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
+        fechaDeInicioEstimadaValue.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.fechaDeInicioEstimada}", Date.class));
+        DateTimeConverter fechaDeInicioEstimadaValueConverter = (DateTimeConverter) application.createConverter(DateTimeConverter.CONVERTER_ID);
+        fechaDeInicioEstimadaValueConverter.setPattern("dd/MM/yyyy");
+        fechaDeInicioEstimadaValue.setConverter(fechaDeInicioEstimadaValueConverter);
+        htmlPanelGrid.getChildren().add(fechaDeInicioEstimadaValue);
         
-        HtmlOutputText fechaLabel = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
-        fechaLabel.setId("fechaLabel");
-        fechaLabel.setValue("Fecha:");
-        htmlPanelGrid.getChildren().add(fechaLabel);
+        HtmlOutputText fechaDeInicioLabel = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
+        fechaDeInicioLabel.setId("fechaDeInicioLabel");
+        fechaDeInicioLabel.setValue("Fecha De Inicio:");
+        htmlPanelGrid.getChildren().add(fechaDeInicioLabel);
         
-        HtmlOutputText fechaValue = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
-        fechaValue.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.fecha}", Date.class));
-        DateTimeConverter fechaValueConverter = (DateTimeConverter) application.createConverter(DateTimeConverter.CONVERTER_ID);
-        fechaValueConverter.setPattern("dd/MM/yyyy");
-        fechaValue.setConverter(fechaValueConverter);
-        htmlPanelGrid.getChildren().add(fechaValue);
+        HtmlOutputText fechaDeInicioValue = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
+        fechaDeInicioValue.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.fechaDeInicio}", Date.class));
+        DateTimeConverter fechaDeInicioValueConverter = (DateTimeConverter) application.createConverter(DateTimeConverter.CONVERTER_ID);
+        fechaDeInicioValueConverter.setPattern("dd/MM/yyyy");
+        fechaDeInicioValue.setConverter(fechaDeInicioValueConverter);
+        htmlPanelGrid.getChildren().add(fechaDeInicioValue);
         
-        HtmlOutputText linkALaCapacitacionLabel = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
-        linkALaCapacitacionLabel.setId("linkALaCapacitacionLabel");
-        linkALaCapacitacionLabel.setValue("Link A La Capacitacion:");
-        htmlPanelGrid.getChildren().add(linkALaCapacitacionLabel);
+        HtmlOutputText fechaDeFinalizacionEstimadaLabel = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
+        fechaDeFinalizacionEstimadaLabel.setId("fechaDeFinalizacionEstimadaLabel");
+        fechaDeFinalizacionEstimadaLabel.setValue("Fecha De Finalizacion Estimada:");
+        htmlPanelGrid.getChildren().add(fechaDeFinalizacionEstimadaLabel);
         
-        HtmlOutputText linkALaCapacitacionValue = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
-        linkALaCapacitacionValue.setId("linkALaCapacitacionValue");
-        linkALaCapacitacionValue.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.linkALaCapacitacion}", String.class));
-        htmlPanelGrid.getChildren().add(linkALaCapacitacionValue);
+        HtmlOutputText fechaDeFinalizacionEstimadaValue = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
+        fechaDeFinalizacionEstimadaValue.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.fechaDeFinalizacionEstimada}", Date.class));
+        DateTimeConverter fechaDeFinalizacionEstimadaValueConverter = (DateTimeConverter) application.createConverter(DateTimeConverter.CONVERTER_ID);
+        fechaDeFinalizacionEstimadaValueConverter.setPattern("dd/MM/yyyy");
+        fechaDeFinalizacionEstimadaValue.setConverter(fechaDeFinalizacionEstimadaValueConverter);
+        htmlPanelGrid.getChildren().add(fechaDeFinalizacionEstimadaValue);
+        
+        HtmlOutputText fechaDeFinalizacionLabel = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
+        fechaDeFinalizacionLabel.setId("fechaDeFinalizacionLabel");
+        fechaDeFinalizacionLabel.setValue("Fecha De Finalizacion:");
+        htmlPanelGrid.getChildren().add(fechaDeFinalizacionLabel);
+        
+        HtmlOutputText fechaDeFinalizacionValue = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
+        fechaDeFinalizacionValue.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.fechaDeFinalizacion}", Date.class));
+        DateTimeConverter fechaDeFinalizacionValueConverter = (DateTimeConverter) application.createConverter(DateTimeConverter.CONVERTER_ID);
+        fechaDeFinalizacionValueConverter.setPattern("dd/MM/yyyy");
+        fechaDeFinalizacionValue.setConverter(fechaDeFinalizacionValueConverter);
+        htmlPanelGrid.getChildren().add(fechaDeFinalizacionValue);
+        
+        HtmlOutputText ingenieriaLabel = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
+        ingenieriaLabel.setId("ingenieriaLabel");
+        ingenieriaLabel.setValue("Ingenieria:");
+        htmlPanelGrid.getChildren().add(ingenieriaLabel);
+        
+        HtmlOutputText ingenieriaValue = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
+        ingenieriaValue.setId("ingenieriaValue");
+        ingenieriaValue.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.ingenieria}", String.class));
+        htmlPanelGrid.getChildren().add(ingenieriaValue);
+        
+        HtmlOutputText cronogramaLabel = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
+        cronogramaLabel.setId("cronogramaLabel");
+        cronogramaLabel.setValue("Cronograma:");
+        htmlPanelGrid.getChildren().add(cronogramaLabel);
+        
+        HtmlOutputText cronogramaValue = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
+        cronogramaValue.setId("cronogramaValue");
+        cronogramaValue.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.cronograma}", String.class));
+        htmlPanelGrid.getChildren().add(cronogramaValue);
+        
+        HtmlOutputText informacionRecibidaLabel = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
+        informacionRecibidaLabel.setId("informacionRecibidaLabel");
+        informacionRecibidaLabel.setValue("Informacion Recibida:");
+        htmlPanelGrid.getChildren().add(informacionRecibidaLabel);
+        
+        HtmlOutputText informacionRecibidaValue = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
+        informacionRecibidaValue.setId("informacionRecibidaValue");
+        informacionRecibidaValue.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.informacionRecibida}", String.class));
+        htmlPanelGrid.getChildren().add(informacionRecibidaValue);
+        
+        HtmlOutputText auditoriaVirtualLabel = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
+        auditoriaVirtualLabel.setId("auditoriaVirtualLabel");
+        auditoriaVirtualLabel.setValue("Auditoria Virtual:");
+        htmlPanelGrid.getChildren().add(auditoriaVirtualLabel);
+        
+        HtmlOutputText auditoriaVirtualValue = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
+        auditoriaVirtualValue.setId("auditoriaVirtualValue");
+        auditoriaVirtualValue.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.auditoriaVirtual}", String.class));
+        htmlPanelGrid.getChildren().add(auditoriaVirtualValue);
+        
+        HtmlOutputText correccionesDeAuditoriaLabel = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
+        correccionesDeAuditoriaLabel.setId("correccionesDeAuditoriaLabel");
+        correccionesDeAuditoriaLabel.setValue("Correcciones De Auditoria:");
+        htmlPanelGrid.getChildren().add(correccionesDeAuditoriaLabel);
+        
+        HtmlOutputText correccionesDeAuditoriaValue = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
+        correccionesDeAuditoriaValue.setId("correccionesDeAuditoriaValue");
+        correccionesDeAuditoriaValue.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.correccionesDeAuditoria}", String.class));
+        htmlPanelGrid.getChildren().add(correccionesDeAuditoriaValue);
+        
+        HtmlOutputText auditoriaCorregidaLabel = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
+        auditoriaCorregidaLabel.setId("auditoriaCorregidaLabel");
+        auditoriaCorregidaLabel.setValue("Auditoria Corregida:");
+        htmlPanelGrid.getChildren().add(auditoriaCorregidaLabel);
+        
+        HtmlOutputText auditoriaCorregidaValue = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
+        auditoriaCorregidaValue.setId("auditoriaCorregidaValue");
+        auditoriaCorregidaValue.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.auditoriaCorregida}", String.class));
+        htmlPanelGrid.getChildren().add(auditoriaCorregidaValue);
+        
+        HtmlOutputText comentariosYObservacionesLabel = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
+        comentariosYObservacionesLabel.setId("comentariosYObservacionesLabel");
+        comentariosYObservacionesLabel.setValue("Comentarios Y Observaciones:");
+        htmlPanelGrid.getChildren().add(comentariosYObservacionesLabel);
+        
+        HtmlOutputText comentariosYObservacionesValue = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
+        comentariosYObservacionesValue.setId("comentariosYObservacionesValue");
+        comentariosYObservacionesValue.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.comentariosYObservaciones}", String.class));
+        htmlPanelGrid.getChildren().add(comentariosYObservacionesValue);
         
         return htmlPanelGrid;
     }
