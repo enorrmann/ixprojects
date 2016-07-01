@@ -20,12 +20,35 @@
           <f:param value="Proyectos" />
         </h:outputFormat>
         <p:dataTable id="list" value="#{proyectoBean.allProyectoes}" var="proyecto" rendered="#{proyectoBean.dataVisible}" resizableColumns="false" paginator="true" paginatorTemplate=" {CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,25,50" rows="10">
-          <p:columns value="#{proyectoBean.columns}" var="column" columnIndexVar="colIndex">
-            <f:facet name="header">
-              <h:outputText value="#{applicationBean.getColumnName(column)}" />
-            </f:facet>
-            <h:outputText value="#{proyecto[column]}" />
-          </p:columns>
+          
+          <p:column headerText="Responsable">
+            #{proyecto.responsable}
+          </p:column>
+          <p:column headerText="Cod">
+            #{proyecto.codigo}
+          </p:column>
+          <p:column headerText="Inicio Estimado">
+            #{proyecto.fechaDeInicioEstimada}
+          </p:column>
+          <p:column headerText="Inicio">
+            #{proyecto.fechaDeInicio}
+          </p:column>
+          <p:column headerText="Fin estimado">
+            #{proyecto.fechaDeFinalizacionEstimada}
+          </p:column>
+          <p:column headerText="Fin">
+            #{proyecto.fechaDeFinalizacion}
+          </p:column>
+          <p:column headerText="Documentos">
+            <h:panelGrid id="docGrid" columns="1">
+              <h:outputLink target="_new" value="#{proyecto.ingenieria}" rendered="#{not empty proyecto.ingenieria}">Ingenieria</h:outputLink>
+              <h:outputLink target="_new" value="#{proyecto.cronograma}" rendered="#{not empty proyecto.cronograma}">Cronograma</h:outputLink>
+              <h:outputLink target="_new" value="#{proyecto.informacionRecibida}" rendered="#{not empty proyecto.informacionRecibida}">InformacionRecibida</h:outputLink>
+              <h:outputLink target="_new" value="#{proyecto.auditoriaVirtual}" rendered="#{not empty proyecto.auditoriaVirtual}">Auditoria</h:outputLink>
+              <h:outputLink target="_new" value="#{proyecto.correccionesDeAuditoria}" rendered="#{not empty proyecto.correccionesDeAuditoria}">Correcciones</h:outputLink>
+            </h:panelGrid>
+          </p:column>
+
           <p:column styleClass="action-column">
             <f:facet name="header">
               <h:outputText value="Actions" />
