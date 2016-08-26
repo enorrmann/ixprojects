@@ -1,0 +1,17 @@
+<aspectj>
+<aspects>
+<aspect name="ar.com.ix.proyectos.web.converter.AuditoriaVirtualConverter_Roo_Configurable"/>
+<aspect name="ar.com.ix.proyectos.web.AuditoriaVirtualBean_Roo_ManagedBean"/>
+<aspect name="ar.com.ix.proyectos.model.AuditoriaVirtual_Roo_Jpa_ActiveRecord"/>
+<aspect name="ar.com.ix.proyectos.web.AuditoriaVirtualBean_Roo_Configurable"/>
+<aspect name="ar.com.ix.proyectos.model.AuditoriaVirtual_Roo_JavaBean"/>
+<aspect name="ar.com.ix.proyectos.web.ApplicationBean_Roo_ApplicationBean"/>
+<aspect name="ar.com.ix.proyectos.model.AuditoriaVirtual_Roo_Jpa_Entity"/>
+<aspect name="ar.com.ix.proyectos.model.AuditoriaVirtual_Roo_Configurable"/>
+<aspect name="ar.com.ix.proyectos.web.converter.AuditoriaVirtualConverter_Roo_Converter"/>
+<aspect name="ar.com.ix.proyectos.web.AuditoriaVirtualBean_Roo_Serializable"/>
+<aspect name="ar.com.ix.proyectos.model.AuditoriaVirtual_Roo_ToString"/>
+<aspect name="ar.com.ix.proyectos.web.ApplicationBean_Roo_Configurable"/>
+</aspects>
+</aspectj>
+

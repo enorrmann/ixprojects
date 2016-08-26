@@ -36,21 +36,21 @@ privileged aspect ApplicationBean_Roo_ApplicationBean {
         MenuItem item;
         
         submenu = new Submenu();
-        submenu.setId("proyectoSubmenu");
-        submenu.setLabel("Proyecto");
+        submenu.setId("auditoriaVirtualSubmenu");
+        submenu.setLabel("AuditoriaVirtual");
         item = new MenuItem();
-        item.setId("createProyectoMenuItem");
+        item.setId("createAuditoriaVirtualMenuItem");
         item.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{messages.label_create}", String.class));
-        item.setActionExpression(expressionFactory.createMethodExpression(elContext, "#{proyectoBean.displayCreateDialog}", String.class, new Class[0]));
+        item.setActionExpression(expressionFactory.createMethodExpression(elContext, "#{auditoriaVirtualBean.displayCreateDialog}", String.class, new Class[0]));
         item.setIcon("ui-icon ui-icon-document");
         item.setAjax(false);
         item.setAsync(false);
         item.setUpdate(":dataForm:data");
         submenu.getChildren().add(item);
         item = new MenuItem();
-        item.setId("listProyectoMenuItem");
+        item.setId("listAuditoriaVirtualMenuItem");
         item.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{messages.label_list}", String.class));
-        item.setActionExpression(expressionFactory.createMethodExpression(elContext, "#{proyectoBean.displayList}", String.class, new Class[0]));
+        item.setActionExpression(expressionFactory.createMethodExpression(elContext, "#{auditoriaVirtualBean.displayList}", String.class, new Class[0]));
         item.setIcon("ui-icon ui-icon-folder-open");
         item.setAjax(false);
         item.setAsync(false);

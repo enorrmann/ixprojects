@@ -3,9 +3,9 @@ project --topLevelPackage ar.com.ix.proyectos
 // CONFIGURACION DE LA BASE DE DATOS
 jpa setup --database HYPERSONIC_PERSISTENT --provider HIBERNATE
 // ENTIDADES, O SEA LOS DATOS QUE SE GUARDAN DE CADA COSA
-// proyectos
-entity jpa --class ~.model.Proyecto
-field string --fieldName responsable
+// AuditoriaVirtual
+entity jpa --class ~.model.AuditoriaVirtual
+field string --fieldName cliente
 field string --fieldName codigo
 field date --fieldName fechaDeInicioEstimada --type java.util.Date --dateFormat MEDIUM --timeFormat NONE --persistenceType JPA_DATE
 field date --fieldName fechaDeInicio --type java.util.Date --dateFormat MEDIUM --timeFormat NONE --persistenceType JPA_DATE

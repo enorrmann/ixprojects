@@ -1,8 +1,8 @@
-// Spring Roo 1.3.2.RELEASE [rev 8387857] log opened at 2016-06-07 09:07:25
+// Spring Roo 1.3.2.RELEASE [rev 8387857] log opened at 2016-08-26 15:36:44
 project --topLevelPackage ar.com.ix.proyectos
 jpa setup --database HYPERSONIC_PERSISTENT --provider HIBERNATE
-entity jpa --class ~.model.Proyecto
-field string --fieldName responsable
+entity jpa --class ~.model.AuditoriaVirtual
+field string --fieldName cliente
 field string --fieldName codigo
 field date --fieldName fechaDeInicioEstimada --type java.util.Date --dateFormat MEDIUM --timeFormat NONE --persistenceType JPA_DATE
 field date --fieldName fechaDeInicio --type java.util.Date --dateFormat MEDIUM --timeFormat NONE --persistenceType JPA_DATE
@@ -19,4 +19,4 @@ web jsf setup --library PRIMEFACES --implementation ORACLE_MOJARRA --theme BLACK
 web jsf all --package ~.web
 // script init/backup.roo
 quit
-// Spring Roo 1.3.2.RELEASE [rev 8387857] log closed at 2016-06-07 09:07:32
+// Spring Roo 1.3.2.RELEASE [rev 8387857] log closed at 2016-08-26 15:37:12
