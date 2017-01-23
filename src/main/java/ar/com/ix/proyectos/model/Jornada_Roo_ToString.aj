@@ -3,13 +3,13 @@
 
 package ar.com.ix.proyectos.model;
 
-import ar.com.ix.proyectos.model.AuditoriaVirtual;
+import ar.com.ix.proyectos.model.Jornada;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-privileged aspect AuditoriaVirtual_Roo_ToString {
+privileged aspect Jornada_Roo_ToString {
     
-    public String AuditoriaVirtual.toString() {
+    public String Jornada.toString() {
         return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
     

@@ -3,7 +3,7 @@
 
 package ar.com.ix.proyectos.model;
 
-import ar.com.ix.proyectos.model.AuditoriaVirtual;
+import ar.com.ix.proyectos.model.Proyecto;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,32 +11,32 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Version;
 
-privileged aspect AuditoriaVirtual_Roo_Jpa_Entity {
+privileged aspect Proyecto_Roo_Jpa_Entity {
     
-    declare @type: AuditoriaVirtual: @Entity;
+    declare @type: Proyecto: @Entity;
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Long AuditoriaVirtual.id;
+    private Long Proyecto.id;
     
     @Version
     @Column(name = "version")
-    private Integer AuditoriaVirtual.version;
+    private Integer Proyecto.version;
     
-    public Long AuditoriaVirtual.getId() {
+    public Long Proyecto.getId() {
         return this.id;
     }
     
-    public void AuditoriaVirtual.setId(Long id) {
+    public void Proyecto.setId(Long id) {
         this.id = id;
     }
     
-    public Integer AuditoriaVirtual.getVersion() {
+    public Integer Proyecto.getVersion() {
         return this.version;
     }
     
-    public void AuditoriaVirtual.setVersion(Integer version) {
+    public void Proyecto.setVersion(Integer version) {
         this.version = version;
     }
     

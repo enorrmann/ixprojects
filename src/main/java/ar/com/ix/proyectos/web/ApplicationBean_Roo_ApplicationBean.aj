@@ -36,10 +36,6 @@ privileged aspect ApplicationBean_Roo_ApplicationBean {
         MenuItem item;
         
         submenu = new Submenu();
-<<<<<<< e9222cde397dd916c096e7da0ff689a1b6ccde96
-        submenu.setId("auditoriaVirtualSubmenu");
-        submenu.setLabel("AuditoriaVirtual");
-=======
         submenu.setId("jornadaSubmenu");
         submenu.setLabel("Jornada");
         item = new MenuItem();
@@ -65,20 +61,19 @@ privileged aspect ApplicationBean_Roo_ApplicationBean {
         submenu = new Submenu();
         submenu.setId("proyectoSubmenu");
         submenu.setLabel("Proyecto");
->>>>>>> d5792d9d4574ac035b3fe3896721b6be3153cc01
         item = new MenuItem();
-        item.setId("createAuditoriaVirtualMenuItem");
+        item.setId("createProyectoMenuItem");
         item.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{messages.label_create}", String.class));
-        item.setActionExpression(expressionFactory.createMethodExpression(elContext, "#{auditoriaVirtualBean.displayCreateDialog}", String.class, new Class[0]));
+        item.setActionExpression(expressionFactory.createMethodExpression(elContext, "#{proyectoBean.displayCreateDialog}", String.class, new Class[0]));
         item.setIcon("ui-icon ui-icon-document");
         item.setAjax(false);
         item.setAsync(false);
         item.setUpdate(":dataForm:data");
         submenu.getChildren().add(item);
         item = new MenuItem();
-        item.setId("listAuditoriaVirtualMenuItem");
+        item.setId("listProyectoMenuItem");
         item.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{messages.label_list}", String.class));
-        item.setActionExpression(expressionFactory.createMethodExpression(elContext, "#{auditoriaVirtualBean.displayList}", String.class, new Class[0]));
+        item.setActionExpression(expressionFactory.createMethodExpression(elContext, "#{proyectoBean.displayList}", String.class, new Class[0]));
         item.setIcon("ui-icon ui-icon-folder-open");
         item.setAjax(false);
         item.setAsync(false);

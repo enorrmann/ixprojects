@@ -3,11 +3,11 @@
 
 package ar.com.ix.proyectos.model;
 
-import ar.com.ix.proyectos.model.AuditoriaVirtual;
+import ar.com.ix.proyectos.model.Proyecto;
 import org.springframework.beans.factory.annotation.Configurable;
 
-privileged aspect AuditoriaVirtual_Roo_Configurable {
+privileged aspect Proyecto_Roo_Configurable {
     
-    declare @type: AuditoriaVirtual: @Configurable;
+    declare @type: Proyecto: @Configurable;
     
 }
