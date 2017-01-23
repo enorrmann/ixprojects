@@ -1,4 +1,4 @@
-// Spring Roo 1.3.2.RELEASE [rev 8387857] log opened at 2017-01-23 13:06:30
+// Spring Roo 1.3.2.RELEASE [rev 8387857] log opened at 2017-01-23 13:14:40
 project --topLevelPackage ar.com.ix.proyectos
 jpa setup --database HYPERSONIC_PERSISTENT --provider HIBERNATE
 entity jpa --class ~.model.Tecnico
@@ -6,6 +6,10 @@ field string --fieldName nombre
 field string --fieldName domicilio
 entity jpa --class ~.model.Proyecto
 field string --fieldName codigo
+entity jpa --class ~.model.Usuario
+field string --fieldName nombre
+field string --fieldName password
+field string --fieldName rol
 entity jpa --class ~.model.Jornada
 field reference --fieldName tecnico --type ~.model.Tecnico
 field reference --fieldName proyecto --type ~.model.Proyecto
@@ -14,4 +18,4 @@ web jsf setup --library PRIMEFACES --implementation ORACLE_MOJARRA --theme BLACK
 web jsf all --package ~.web
 // script init/backup.roo
 quit
-// Spring Roo 1.3.2.RELEASE [rev 8387857] log closed at 2017-01-23 13:06:44
+// Spring Roo 1.3.2.RELEASE [rev 8387857] log closed at 2017-01-23 13:14:56
