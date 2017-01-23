@@ -1,0 +1,28 @@
+// CONFIGURACION GENERAL
+project --topLevelPackage ar.com.ix.proyectos
+// CONFIGURACION DE LA BASE DE DATOS
+jpa setup --database HYPERSONIC_PERSISTENT --provider HIBERNATE
+// ENTIDADES, O SEA LOS DATOS QUE SE GUARDAN DE CADA COSA
+<<<<<<< e9222cde397dd916c096e7da0ff689a1b6ccde96
+// AuditoriaVirtual
+entity jpa --class ~.model.AuditoriaVirtual
+field string --fieldName cliente
+=======
+//
+entity jpa --class ~.model.Tecnico
+field string --fieldName nombre
+field string --fieldName domicilio
+//
+// proyectos
+entity jpa --class ~.model.Proyecto
+>>>>>>> d5792d9d4574ac035b3fe3896721b6be3153cc01
+field string --fieldName codigo
+//
+// jornadas
+entity jpa --class ~.model.Jornada
+field reference --fieldName tecnico --type ~.model.Tecnico
+field reference --fieldName proyecto --type ~.model.Proyecto
+field date --fieldName fecha --type java.util.Date  --dateFormat MEDIUM --timeFormat NONE --persistenceType JPA_DATE
+// CONFIGURACION DE LA WEB
+web jsf setup --library PRIMEFACES --implementation ORACLE_MOJARRA --theme BLACK_TIE
+web jsf all --package ~.web
