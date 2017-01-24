@@ -140,7 +140,7 @@ privileged aspect JornadaBean_Roo_ManagedBean {
         tecnicoCreateInput.setCompleteMethod(expressionFactory.createMethodExpression(elContext, "#{jornadaBean.completeTecnico}", List.class, new Class[] { String.class }));
         tecnicoCreateInput.setDropdown(true);
         tecnicoCreateInput.setValueExpression("var", expressionFactory.createValueExpression(elContext, "tecnico", String.class));
-        tecnicoCreateInput.setValueExpression("itemLabel", expressionFactory.createValueExpression(elContext, "#{tecnico.nombre} #{tecnico.domicilio}", String.class));
+        tecnicoCreateInput.setValueExpression("itemLabel", expressionFactory.createValueExpression(elContext, "#{tecnico.nombre}", String.class));
         tecnicoCreateInput.setValueExpression("itemValue", expressionFactory.createValueExpression(elContext, "#{tecnico}", Tecnico.class));
         tecnicoCreateInput.setConverter(new TecnicoConverter());
         tecnicoCreateInput.setRequired(false);
@@ -152,7 +152,8 @@ privileged aspect JornadaBean_Roo_ManagedBean {
         tecnicoCreateInputMessage.setDisplay("icon");
         htmlPanelGrid.getChildren().add(tecnicoCreateInputMessage);
         
-        OutputLabel proyectoCreateOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
+       
+       /* OutputLabel proyectoCreateOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
         proyectoCreateOutput.setFor("proyectoCreateInput");
         proyectoCreateOutput.setId("proyectoCreateOutput");
         proyectoCreateOutput.setValue("Proyecto:");
@@ -175,7 +176,7 @@ privileged aspect JornadaBean_Roo_ManagedBean {
         proyectoCreateInputMessage.setFor("proyectoCreateInput");
         proyectoCreateInputMessage.setDisplay("icon");
         htmlPanelGrid.getChildren().add(proyectoCreateInputMessage);
-        
+        */
         OutputLabel fechaCreateOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
         fechaCreateOutput.setFor("fechaCreateInput");
         fechaCreateOutput.setId("fechaCreateOutput");
@@ -220,7 +221,7 @@ privileged aspect JornadaBean_Roo_ManagedBean {
         tecnicoEditInput.setCompleteMethod(expressionFactory.createMethodExpression(elContext, "#{jornadaBean.completeTecnico}", List.class, new Class[] { String.class }));
         tecnicoEditInput.setDropdown(true);
         tecnicoEditInput.setValueExpression("var", expressionFactory.createValueExpression(elContext, "tecnico", String.class));
-        tecnicoEditInput.setValueExpression("itemLabel", expressionFactory.createValueExpression(elContext, "#{tecnico.nombre} #{tecnico.domicilio}", String.class));
+        tecnicoEditInput.setValueExpression("itemLabel", expressionFactory.createValueExpression(elContext, "#{tecnico.nombre}", String.class));
         tecnicoEditInput.setValueExpression("itemValue", expressionFactory.createValueExpression(elContext, "#{tecnico}", Tecnico.class));
         tecnicoEditInput.setConverter(new TecnicoConverter());
         tecnicoEditInput.setRequired(false);
@@ -337,7 +338,7 @@ privileged aspect JornadaBean_Roo_ManagedBean {
     public List<Tecnico> JornadaBean.completeTecnico(String query) {
         List<Tecnico> suggestions = new ArrayList<Tecnico>();
         for (Tecnico tecnico : Tecnico.findAllTecnicoes()) {
-            String tecnicoStr = String.valueOf(tecnico.getNombre() +  " "  + tecnico.getDomicilio());
+            String tecnicoStr = String.valueOf(tecnico.getNombre());
             if (tecnicoStr.toLowerCase().startsWith(query.toLowerCase())) {
                 suggestions.add(tecnico);
             }
@@ -376,8 +377,9 @@ privileged aspect JornadaBean_Roo_ManagedBean {
     
     public String JornadaBean.displayCreateDialog() {
         jornada = new Jornada();
+        jornada.setProyecto(proyectoBean.getProyecto());
         createDialogVisible = true;
-        return "jornada";
+        return null;//"jornada";
     }
     
     public String JornadaBean.persist() {
@@ -391,12 +393,12 @@ privileged aspect JornadaBean_Roo_ManagedBean {
         }
         RequestContext context = RequestContext.getCurrentInstance();
         context.execute("createDialogWidget.hide()");
-        context.execute("editDialogWidget.hide()");
+        //context.execute("editDialogWidget.hide()");
         
         FacesMessage facesMessage = MessageFactory.getMessage(message, "Jornada");
         FacesContext.getCurrentInstance().addMessage(null, facesMessage);
         reset();
-        return findAllJornadas();
+        return null;//findAllJornadas();
     }
     
     public String JornadaBean.delete() {

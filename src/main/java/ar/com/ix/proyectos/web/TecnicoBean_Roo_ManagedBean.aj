@@ -3,8 +3,10 @@
 
 package ar.com.ix.proyectos.web;
 
+import ar.com.ix.proyectos.model.Pais;
 import ar.com.ix.proyectos.model.Tecnico;
 import ar.com.ix.proyectos.web.TecnicoBean;
+import ar.com.ix.proyectos.web.converter.PaisConverter;
 import ar.com.ix.proyectos.web.util.MessageFactory;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +19,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.component.html.HtmlOutputText;
 import javax.faces.component.html.HtmlPanelGrid;
 import javax.faces.context.FacesContext;
+import org.primefaces.component.autocomplete.AutoComplete;
 import org.primefaces.component.inputtext.InputText;
 import org.primefaces.component.message.Message;
 import org.primefaces.component.outputlabel.OutputLabel;
@@ -51,7 +54,6 @@ privileged aspect TecnicoBean_Roo_ManagedBean {
     public void TecnicoBean.init() {
         columns = new ArrayList<String>();
         columns.add("nombre");
-        columns.add("domicilio");
     }
     
     public String TecnicoBean.getName() {
@@ -140,23 +142,29 @@ privileged aspect TecnicoBean_Roo_ManagedBean {
         nombreCreateInputMessage.setDisplay("icon");
         htmlPanelGrid.getChildren().add(nombreCreateInputMessage);
         
-        OutputLabel domicilioCreateOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
-        domicilioCreateOutput.setFor("domicilioCreateInput");
-        domicilioCreateOutput.setId("domicilioCreateOutput");
-        domicilioCreateOutput.setValue("Domicilio:");
-        htmlPanelGrid.getChildren().add(domicilioCreateOutput);
+        OutputLabel paisCreateOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
+        paisCreateOutput.setFor("paisCreateInput");
+        paisCreateOutput.setId("paisCreateOutput");
+        paisCreateOutput.setValue("Pais:");
+        htmlPanelGrid.getChildren().add(paisCreateOutput);
         
-        InputText domicilioCreateInput = (InputText) application.createComponent(InputText.COMPONENT_TYPE);
-        domicilioCreateInput.setId("domicilioCreateInput");
-        domicilioCreateInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{tecnicoBean.tecnico.domicilio}", String.class));
-        domicilioCreateInput.setRequired(false);
-        htmlPanelGrid.getChildren().add(domicilioCreateInput);
+        AutoComplete paisCreateInput = (AutoComplete) application.createComponent(AutoComplete.COMPONENT_TYPE);
+        paisCreateInput.setId("paisCreateInput");
+        paisCreateInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{tecnicoBean.tecnico.pais}", Pais.class));
+        paisCreateInput.setCompleteMethod(expressionFactory.createMethodExpression(elContext, "#{tecnicoBean.completePais}", List.class, new Class[] { String.class }));
+        paisCreateInput.setDropdown(true);
+        paisCreateInput.setValueExpression("var", expressionFactory.createValueExpression(elContext, "pais", String.class));
+        paisCreateInput.setValueExpression("itemLabel", expressionFactory.createValueExpression(elContext, "#{pais.nombre}", String.class));
+        paisCreateInput.setValueExpression("itemValue", expressionFactory.createValueExpression(elContext, "#{pais}", Pais.class));
+        paisCreateInput.setConverter(new PaisConverter());
+        paisCreateInput.setRequired(false);
+        htmlPanelGrid.getChildren().add(paisCreateInput);
         
-        Message domicilioCreateInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
-        domicilioCreateInputMessage.setId("domicilioCreateInputMessage");
-        domicilioCreateInputMessage.setFor("domicilioCreateInput");
-        domicilioCreateInputMessage.setDisplay("icon");
-        htmlPanelGrid.getChildren().add(domicilioCreateInputMessage);
+        Message paisCreateInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
+        paisCreateInputMessage.setId("paisCreateInputMessage");
+        paisCreateInputMessage.setFor("paisCreateInput");
+        paisCreateInputMessage.setDisplay("icon");
+        htmlPanelGrid.getChildren().add(paisCreateInputMessage);
         
         return htmlPanelGrid;
     }
@@ -187,23 +195,29 @@ privileged aspect TecnicoBean_Roo_ManagedBean {
         nombreEditInputMessage.setDisplay("icon");
         htmlPanelGrid.getChildren().add(nombreEditInputMessage);
         
-        OutputLabel domicilioEditOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
-        domicilioEditOutput.setFor("domicilioEditInput");
-        domicilioEditOutput.setId("domicilioEditOutput");
-        domicilioEditOutput.setValue("Domicilio:");
-        htmlPanelGrid.getChildren().add(domicilioEditOutput);
+        OutputLabel paisEditOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
+        paisEditOutput.setFor("paisEditInput");
+        paisEditOutput.setId("paisEditOutput");
+        paisEditOutput.setValue("Pais:");
+        htmlPanelGrid.getChildren().add(paisEditOutput);
         
-        InputText domicilioEditInput = (InputText) application.createComponent(InputText.COMPONENT_TYPE);
-        domicilioEditInput.setId("domicilioEditInput");
-        domicilioEditInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{tecnicoBean.tecnico.domicilio}", String.class));
-        domicilioEditInput.setRequired(false);
-        htmlPanelGrid.getChildren().add(domicilioEditInput);
+        AutoComplete paisEditInput = (AutoComplete) application.createComponent(AutoComplete.COMPONENT_TYPE);
+        paisEditInput.setId("paisEditInput");
+        paisEditInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{tecnicoBean.tecnico.pais}", Pais.class));
+        paisEditInput.setCompleteMethod(expressionFactory.createMethodExpression(elContext, "#{tecnicoBean.completePais}", List.class, new Class[] { String.class }));
+        paisEditInput.setDropdown(true);
+        paisEditInput.setValueExpression("var", expressionFactory.createValueExpression(elContext, "pais", String.class));
+        paisEditInput.setValueExpression("itemLabel", expressionFactory.createValueExpression(elContext, "#{pais.nombre}", String.class));
+        paisEditInput.setValueExpression("itemValue", expressionFactory.createValueExpression(elContext, "#{pais}", Pais.class));
+        paisEditInput.setConverter(new PaisConverter());
+        paisEditInput.setRequired(false);
+        htmlPanelGrid.getChildren().add(paisEditInput);
         
-        Message domicilioEditInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
-        domicilioEditInputMessage.setId("domicilioEditInputMessage");
-        domicilioEditInputMessage.setFor("domicilioEditInput");
-        domicilioEditInputMessage.setDisplay("icon");
-        htmlPanelGrid.getChildren().add(domicilioEditInputMessage);
+        Message paisEditInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
+        paisEditInputMessage.setId("paisEditInputMessage");
+        paisEditInputMessage.setFor("paisEditInput");
+        paisEditInputMessage.setDisplay("icon");
+        htmlPanelGrid.getChildren().add(paisEditInputMessage);
         
         return htmlPanelGrid;
     }
@@ -226,15 +240,15 @@ privileged aspect TecnicoBean_Roo_ManagedBean {
         nombreValue.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{tecnicoBean.tecnico.nombre}", String.class));
         htmlPanelGrid.getChildren().add(nombreValue);
         
-        HtmlOutputText domicilioLabel = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
-        domicilioLabel.setId("domicilioLabel");
-        domicilioLabel.setValue("Domicilio:");
-        htmlPanelGrid.getChildren().add(domicilioLabel);
+        HtmlOutputText paisLabel = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
+        paisLabel.setId("paisLabel");
+        paisLabel.setValue("Pais:");
+        htmlPanelGrid.getChildren().add(paisLabel);
         
-        HtmlOutputText domicilioValue = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
-        domicilioValue.setId("domicilioValue");
-        domicilioValue.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{tecnicoBean.tecnico.domicilio}", String.class));
-        htmlPanelGrid.getChildren().add(domicilioValue);
+        HtmlOutputText paisValue = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
+        paisValue.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{tecnicoBean.tecnico.pais}", Pais.class));
+        paisValue.setConverter(new PaisConverter());
+        htmlPanelGrid.getChildren().add(paisValue);
         
         return htmlPanelGrid;
     }
@@ -248,6 +262,17 @@ privileged aspect TecnicoBean_Roo_ManagedBean {
     
     public void TecnicoBean.setTecnico(Tecnico tecnico) {
         this.tecnico = tecnico;
+    }
+    
+    public List<Pais> TecnicoBean.completePais(String query) {
+        List<Pais> suggestions = new ArrayList<Pais>();
+        for (Pais pais : Pais.findAllPaises()) {
+            String paisStr = String.valueOf(pais.getNombre());
+            if (paisStr.toLowerCase().startsWith(query.toLowerCase())) {
+                suggestions.add(pais);
+            }
+        }
+        return suggestions;
     }
     
     public String TecnicoBean.onEdit() {

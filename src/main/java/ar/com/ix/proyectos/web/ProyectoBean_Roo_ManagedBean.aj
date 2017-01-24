@@ -4,7 +4,9 @@
 package ar.com.ix.proyectos.web;
 
 import ar.com.ix.proyectos.model.Proyecto;
+import ar.com.ix.proyectos.model.Usuario;
 import ar.com.ix.proyectos.web.ProyectoBean;
+import ar.com.ix.proyectos.web.converter.UsuarioConverter;
 import ar.com.ix.proyectos.web.util.MessageFactory;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +19,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.component.html.HtmlOutputText;
 import javax.faces.component.html.HtmlPanelGrid;
 import javax.faces.context.FacesContext;
+import org.primefaces.component.autocomplete.AutoComplete;
 import org.primefaces.component.inputtext.InputText;
 import org.primefaces.component.message.Message;
 import org.primefaces.component.outputlabel.OutputLabel;
@@ -139,6 +142,30 @@ privileged aspect ProyectoBean_Roo_ManagedBean {
         codigoCreateInputMessage.setDisplay("icon");
         htmlPanelGrid.getChildren().add(codigoCreateInputMessage);
         
+        OutputLabel responsableCreateOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
+        responsableCreateOutput.setFor("responsableCreateInput");
+        responsableCreateOutput.setId("responsableCreateOutput");
+        responsableCreateOutput.setValue("Responsable:");
+        htmlPanelGrid.getChildren().add(responsableCreateOutput);
+        
+        AutoComplete responsableCreateInput = (AutoComplete) application.createComponent(AutoComplete.COMPONENT_TYPE);
+        responsableCreateInput.setId("responsableCreateInput");
+        responsableCreateInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.responsable}", Usuario.class));
+        responsableCreateInput.setCompleteMethod(expressionFactory.createMethodExpression(elContext, "#{proyectoBean.completeResponsable}", List.class, new Class[] { String.class }));
+        responsableCreateInput.setDropdown(true);
+        responsableCreateInput.setValueExpression("var", expressionFactory.createValueExpression(elContext, "responsable", String.class));
+        responsableCreateInput.setValueExpression("itemLabel", expressionFactory.createValueExpression(elContext, "#{responsable.nombre} #{responsable.password} #{responsable.rol}", String.class));
+        responsableCreateInput.setValueExpression("itemValue", expressionFactory.createValueExpression(elContext, "#{responsable}", Usuario.class));
+        responsableCreateInput.setConverter(new UsuarioConverter());
+        responsableCreateInput.setRequired(false);
+        htmlPanelGrid.getChildren().add(responsableCreateInput);
+        
+        Message responsableCreateInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
+        responsableCreateInputMessage.setId("responsableCreateInputMessage");
+        responsableCreateInputMessage.setFor("responsableCreateInput");
+        responsableCreateInputMessage.setDisplay("icon");
+        htmlPanelGrid.getChildren().add(responsableCreateInputMessage);
+        
         return htmlPanelGrid;
     }
     
@@ -168,6 +195,30 @@ privileged aspect ProyectoBean_Roo_ManagedBean {
         codigoEditInputMessage.setDisplay("icon");
         htmlPanelGrid.getChildren().add(codigoEditInputMessage);
         
+        OutputLabel responsableEditOutput = (OutputLabel) application.createComponent(OutputLabel.COMPONENT_TYPE);
+        responsableEditOutput.setFor("responsableEditInput");
+        responsableEditOutput.setId("responsableEditOutput");
+        responsableEditOutput.setValue("Responsable:");
+        htmlPanelGrid.getChildren().add(responsableEditOutput);
+        
+        AutoComplete responsableEditInput = (AutoComplete) application.createComponent(AutoComplete.COMPONENT_TYPE);
+        responsableEditInput.setId("responsableEditInput");
+        responsableEditInput.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.responsable}", Usuario.class));
+        responsableEditInput.setCompleteMethod(expressionFactory.createMethodExpression(elContext, "#{proyectoBean.completeResponsable}", List.class, new Class[] { String.class }));
+        responsableEditInput.setDropdown(true);
+        responsableEditInput.setValueExpression("var", expressionFactory.createValueExpression(elContext, "responsable", String.class));
+        responsableEditInput.setValueExpression("itemLabel", expressionFactory.createValueExpression(elContext, "#{responsable.nombre} #{responsable.password} #{responsable.rol}", String.class));
+        responsableEditInput.setValueExpression("itemValue", expressionFactory.createValueExpression(elContext, "#{responsable}", Usuario.class));
+        responsableEditInput.setConverter(new UsuarioConverter());
+        responsableEditInput.setRequired(false);
+        htmlPanelGrid.getChildren().add(responsableEditInput);
+        
+        Message responsableEditInputMessage = (Message) application.createComponent(Message.COMPONENT_TYPE);
+        responsableEditInputMessage.setId("responsableEditInputMessage");
+        responsableEditInputMessage.setFor("responsableEditInput");
+        responsableEditInputMessage.setDisplay("icon");
+        htmlPanelGrid.getChildren().add(responsableEditInputMessage);
+        
         return htmlPanelGrid;
     }
     
@@ -189,6 +240,16 @@ privileged aspect ProyectoBean_Roo_ManagedBean {
         codigoValue.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.codigo}", String.class));
         htmlPanelGrid.getChildren().add(codigoValue);
         
+        HtmlOutputText responsableLabel = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
+        responsableLabel.setId("responsableLabel");
+        responsableLabel.setValue("Responsable:");
+        htmlPanelGrid.getChildren().add(responsableLabel);
+        
+        HtmlOutputText responsableValue = (HtmlOutputText) application.createComponent(HtmlOutputText.COMPONENT_TYPE);
+        responsableValue.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{proyectoBean.proyecto.responsable}", Usuario.class));
+        responsableValue.setConverter(new UsuarioConverter());
+        htmlPanelGrid.getChildren().add(responsableValue);
+        
         return htmlPanelGrid;
     }
     
@@ -201,6 +262,17 @@ privileged aspect ProyectoBean_Roo_ManagedBean {
     
     public void ProyectoBean.setProyecto(Proyecto proyecto) {
         this.proyecto = proyecto;
+    }
+    
+    public List<Usuario> ProyectoBean.completeResponsable(String query) {
+        List<Usuario> suggestions = new ArrayList<Usuario>();
+        for (Usuario usuario : Usuario.findAllUsuarios()) {
+            String usuarioStr = String.valueOf(usuario.getNombre() +  " "  + usuario.getPassword() +  " "  + usuario.getRol());
+            if (usuarioStr.toLowerCase().startsWith(query.toLowerCase())) {
+                suggestions.add(usuario);
+            }
+        }
+        return suggestions;
     }
     
     public String ProyectoBean.onEdit() {

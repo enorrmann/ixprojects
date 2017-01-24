@@ -30,7 +30,7 @@
             <f:facet name="header">
               <h:outputText value="Actions" />
             </f:facet>
-            <p:commandButton id="viewButton" icon="ui-icon-zoomin" update=":viewForm:viewPanelGrid" oncomplete="viewDialogWidget.show()" title="#{messages.label_view}">
+            <p:commandButton id="viewButton" icon="ui-icon-zoomin" ajax="false" action="detalleProyecto" title="#{messages.label_view}">
               <f:setPropertyActionListener value="#{proyecto}" target="#{proyectoBean.proyecto}" />
             </p:commandButton>
             <p:tooltip for="viewButton" value="#{messages.label_view}" showEffect="fade" hideEffect="fade" />

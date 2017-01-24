@@ -4,6 +4,7 @@
 package ar.com.ix.proyectos.model;
 
 import ar.com.ix.proyectos.model.Proyecto;
+import ar.com.ix.proyectos.model.Usuario;
 
 privileged aspect Proyecto_Roo_JavaBean {
     
@@ -13,6 +14,14 @@ privileged aspect Proyecto_Roo_JavaBean {
     
     public void Proyecto.setCodigo(String codigo) {
         this.codigo = codigo;
+    }
+    
+    public Usuario Proyecto.getResponsable() {
+        return this.responsable;
+    }
+    
+    public void Proyecto.setResponsable(Usuario responsable) {
+        this.responsable = responsable;
     }
     
 }

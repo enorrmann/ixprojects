@@ -3,19 +3,25 @@ project --topLevelPackage ar.com.ix.proyectos
 // CONFIGURACION DE LA BASE DE DATOS
 jpa setup --database HYPERSONIC_PERSISTENT --provider HIBERNATE
 // ENTIDADES, O SEA LOS DATOS QUE SE GUARDAN DE CADA COSA
-entity jpa --class ~.model.Tecnico
-field string --fieldName nombre
-field string --fieldName domicilio
-//
-// proyectos
-entity jpa --class ~.model.Proyecto
-field string --fieldName codigo
-//
 // usuarios
 entity jpa --class ~.model.Usuario
 field string --fieldName nombre
 field string --fieldName password
 field string --fieldName rol
+//
+// paises
+entity jpa --class ~.model.Pais
+field string --fieldName nombre
+//
+// tecnicos
+entity jpa --class ~.model.Tecnico
+field string --fieldName nombre
+field reference --fieldName pais --type ~.model.Pais
+//
+// proyectos
+entity jpa --class ~.model.Proyecto
+field string --fieldName codigo
+field reference --fieldName responsable --type ~.model.Usuario
 //
 // jornadas
 entity jpa --class ~.model.Jornada

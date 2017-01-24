@@ -36,6 +36,8 @@ privileged aspect ApplicationBean_Roo_ApplicationBean {
         MenuItem item;
         
         submenu = new Submenu();
+        
+        /*
         submenu.setId("jornadaSubmenu");
         submenu.setLabel("Jornada");
         item = new MenuItem();
@@ -51,6 +53,30 @@ privileged aspect ApplicationBean_Roo_ApplicationBean {
         item.setId("listJornadaMenuItem");
         item.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{messages.label_list}", String.class));
         item.setActionExpression(expressionFactory.createMethodExpression(elContext, "#{jornadaBean.displayList}", String.class, new Class[0]));
+        item.setIcon("ui-icon ui-icon-folder-open");
+        item.setAjax(false);
+        item.setAsync(false);
+        item.setUpdate(":dataForm:data");
+        submenu.getChildren().add(item);
+        menuModel.addSubmenu(submenu);
+        */
+        
+        submenu = new Submenu();
+        submenu.setId("paisSubmenu");
+        submenu.setLabel("Pais");
+        item = new MenuItem();
+        item.setId("createPaisMenuItem");
+        item.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{messages.label_create}", String.class));
+        item.setActionExpression(expressionFactory.createMethodExpression(elContext, "#{paisBean.displayCreateDialog}", String.class, new Class[0]));
+        item.setIcon("ui-icon ui-icon-document");
+        item.setAjax(false);
+        item.setAsync(false);
+        item.setUpdate(":dataForm:data");
+        submenu.getChildren().add(item);
+        item = new MenuItem();
+        item.setId("listPaisMenuItem");
+        item.setValueExpression("value", expressionFactory.createValueExpression(elContext, "#{messages.label_list}", String.class));
+        item.setActionExpression(expressionFactory.createMethodExpression(elContext, "#{paisBean.displayList}", String.class, new Class[0]));
         item.setIcon("ui-icon ui-icon-folder-open");
         item.setAjax(false);
         item.setAsync(false);

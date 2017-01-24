@@ -3,6 +3,7 @@
 
 package ar.com.ix.proyectos.model;
 
+import ar.com.ix.proyectos.model.Pais;
 import ar.com.ix.proyectos.model.Tecnico;
 
 privileged aspect Tecnico_Roo_JavaBean {
@@ -15,12 +16,12 @@ privileged aspect Tecnico_Roo_JavaBean {
         this.nombre = nombre;
     }
     
-    public String Tecnico.getDomicilio() {
-        return this.domicilio;
+    public Pais Tecnico.getPais() {
+        return this.pais;
     }
     
-    public void Tecnico.setDomicilio(String domicilio) {
-        this.domicilio = domicilio;
+    public void Tecnico.setPais(Pais pais) {
+        this.pais = pais;
     }
     
 }
