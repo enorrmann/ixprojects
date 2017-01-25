@@ -20,15 +20,24 @@
           <f:param value="Tecnicoes" />
         </h:outputFormat>
         <p:dataTable id="list" value="#{tecnicoBean.allTecnicoes}" var="tecnico" rendered="#{tecnicoBean.dataVisible}" resizableColumns="false" paginator="true" paginatorTemplate=" {CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,25,50" rows="10">
-          <p:columns value="#{tecnicoBean.columns}" var="column" columnIndexVar="colIndex">
+
+          <p:column filterBy="#{tecnico.nombre}">
             <f:facet name="header">
-              <h:outputText value="#{applicationBean.getColumnName(column)}" />
+              <h:outputText value="Nombre" />
             </f:facet>
-            <h:outputText value="#{tecnico[column]}" />
-          </p:columns>
+            <h:outputText value="#{tecnico.nombre}" />
+          </p:column>
+          <p:column filterBy="#{tecnico.pais.nombre}">
+            <f:facet name="header">
+              <h:outputText value="Pais" />
+            </f:facet>
+            <h:outputText value="#{tecnico.pais.nombre}" />
+          </p:column>
+
+
           <p:column styleClass="action-column">
             <f:facet name="header">
-              <h:outputText value="Actions" />
+              <h:outputText value="Acciones" />
             </f:facet>
             <p:commandButton id="viewButton" icon="ui-icon-zoomin" update=":viewForm:viewPanelGrid" oncomplete="viewDialogWidget.show()" title="#{messages.label_view}">
               <f:setPropertyActionListener value="#{tecnico}" target="#{tecnicoBean.tecnico}" />

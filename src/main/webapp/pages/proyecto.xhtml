@@ -20,15 +20,23 @@
           <f:param value="Proyectoes" />
         </h:outputFormat>
         <p:dataTable id="list" value="#{proyectoBean.allProyectoes}" var="proyecto" rendered="#{proyectoBean.dataVisible}" resizableColumns="false" paginator="true" paginatorTemplate=" {CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,25,50" rows="10">
-          <p:columns value="#{proyectoBean.columns}" var="column" columnIndexVar="colIndex">
+
+          <p:column>
             <f:facet name="header">
-              <h:outputText value="#{applicationBean.getColumnName(column)}" />
+              <h:outputText value="Codigo" />
             </f:facet>
-            <h:outputText value="#{proyecto[column]}" />
-          </p:columns>
+            <h:outputText value="#{proyecto.codigo}" />
+          </p:column>
+          <p:column>
+            <f:facet name="header">
+              <h:outputText value="Responsable" />
+            </f:facet>
+            <h:outputText value="#{proyecto.responsable.nombre}" />
+          </p:column>
+
           <p:column styleClass="action-column">
             <f:facet name="header">
-              <h:outputText value="Actions" />
+              <h:outputText value="Acciones" />
             </f:facet>
             <p:commandButton id="viewButton" icon="ui-icon-zoomin" ajax="false" action="detalleProyecto" title="#{messages.label_view}">
               <f:setPropertyActionListener value="#{proyecto}" target="#{proyectoBean.proyecto}" />

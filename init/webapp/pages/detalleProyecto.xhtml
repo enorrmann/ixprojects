@@ -56,8 +56,6 @@
 <table columns="2" width="100%" >
 <tr>
 <td style="vertical-align:top">
-        
-
         <p:dataTable  id="tecnicoList" value="#{proyectoBean.proyecto.tecnicos}" var="tecnico">
         <f:facet name="header">
         <h:outputText value="Tecnicos" />
@@ -69,25 +67,12 @@
             <h:outputText value="#{tecnico.nombre}" />
           </p:column>
         </p:dataTable>
-
-
 </td>
 <td style="vertical-align:top">
 
-
- <p:tabView>
-        <p:tab title="Lista">
-
-
         <p:dataTable id="jornadaList" value="#{proyectoBean.proyecto.jornadas}" var="jornada">
         <f:facet name="header">
-          <h:outputText value="Jornadas" />
-
-<!--
-        <h:commandLink value="export">
-            <p:dataExporter type="csv" target="jornadaList" fileName="jornadas" />
-        </h:commandLink>
--->
+        <h:outputText value="Jornadas" />
         </f:facet>
           <p:column filterBy="#{jornada.fecha.toString()}" filterMatchMode="contains">
             <f:facet name="header">
@@ -114,29 +99,18 @@
           </p:column>
 
         </p:dataTable>
-    
-        </p:tab>
-        <p:tab title="Calendario">
-            <p:schedule id="schedule" value="#{proyectoBean.proyecto.schedule}" widgetVar="myschedule">
-            </p:schedule>
-
-
-        </p:tab>
-   </p:tabView>
- 
-   <p:commandButton id="nuevaJornada" 
+    <p:commandButton id="nuevaJornada" 
     action="#{jornadaBean.displayCreateDialog}"
     value="Nueva jornada" oncomplete="createDialogWidget.show()" update=":createDialog">
     </p:commandButton>
-
 
 </td>
 </tr>
 
 </table>
 
-</p:panel>
-</h:form>
+        </p:panel>
+        </h:form>
 
 
 
